@@ -179,7 +179,7 @@ function Main() {
             </div>
           </div>
 
-          {/* <!-- Кнопка для выхода из полноэкранного просмотра изображения --> */}
+          {/* <!-- Кнопка для выхода из полноэкранного просмотра изображени --> */}
           <button type="reset" className="Big-picture__cancel  Cancel" id="picture-cancel">Закрыть</button>
         </div>
       </section>
