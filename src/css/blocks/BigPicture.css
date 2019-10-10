@@ -1,0 +1,33 @@
+/* Окно полноэкранного просмотра изображения
+   ========================================================================== */
+
+.Big-picture__preview {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+
+  max-width: 600px;
+  min-height: 600px;
+
+  padding-bottom: 60px;
+
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.Big-picture__img img {
+  display: block;
+}
+
+/*
+ * Форма для отправки комментария
+ */
+
+.Big-picture__cancel {
+  position: absolute;
+  top: 0;
+  left: 100%;
+
+  margin-left: 10px;
+}

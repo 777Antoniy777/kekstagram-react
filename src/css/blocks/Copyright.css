@@ -1,0 +1,21 @@
+/*
+ * Копирайт Академии
+ */
+
+.Copyright {
+  font-size: 12px;
+}
+
+.Copyright__link--image:hover,
+.Copyright__link--image:focus {
+  opacity: 0.6;
+}
+
+.Copyright__link--text {
+  color: #ffffff;
+}
+
+.Copyright__link--text:hover,
+.Copyright__link--text:focus {
+  opacity: 0.6;
+}

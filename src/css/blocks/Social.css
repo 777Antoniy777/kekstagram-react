@@ -1,0 +1,177 @@
+/* Окно полноэкранного просмотра изображения
+   ========================================================================== */
+
+.Social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+
+  max-width: 600px;
+
+  color: #000000;
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-weight: 400;
+  text-transform: none;
+
+  background-color: #ffffff;
+}
+
+/*
+ * Подпись к изображению
+ */
+
+.Social__header {
+  padding: 15px 15px;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-box-pack: start;
+     -ms-flex-pack: start;
+   justify-content: flex-start;
+
+  -webkit-box-align: flex-start;
+     -ms-flex-align: flex-start;
+        align-items: flex-start;
+
+  border-bottom: 1px solid #cccccc;
+}
+
+.Social_picture {
+  display: block;
+  -ms-flex-negative: 0;
+        flex-shrink: 0;
+  margin-right: 15px;
+}
+
+.Social__caption {
+  margin: 0;
+  margin-right: 15px;
+}
+
+.Social__likes {
+  margin: 0;
+  margin-left: auto;
+  min-width: 125px;
+}
+
+/*
+ * Комментарии к изображению
+ */
+
+.Social__comments {
+  -ms-flex-preferred-size: 100%;
+               flex-basis: 100%;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
+}
+
+.Social__comment {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 20px;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-box-align: center;
+     -ms-flex-align: center;
+        align-items: center;
+}
+
+.Social__comment-count {
+  padding-top: 20px;
+  padding-left: 65px;
+}
+
+.Social_comments-loader {
+  padding: 0;
+  padding-left: 65px;
+  padding-bottom: 20px;
+  position: relative;
+
+  text-align: left;
+  color: #3b77c0;
+
+  background: none;
+  border: none;
+}
+
+.Social__text {
+  margin: 0;
+}
+
+/*
+ * Форма для отправки комментария
+ */
+
+.Social__footer {
+  border-top: 1px solid #cccccc;
+}
+
+.Social__footer {
+  position: relative;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  padding: 15px;
+}
+
+.Social__footer-commentor {
+  display: block;
+
+  margin-right: 15px;
+}
+
+.Social__footer-text {
+  width: 100%;
+
+  border: none;
+}
+
+.Social__footer-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+
+  width: 34px;
+  height: 34px;
+
+  font-size: 0;
+
+  background-image: url("../../img/sprite.png");
+  background-repeat: no-repeat;
+  background-position: -5px -106px;
+
+  opacity: 0.6;
+
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+
+  border: none;
+}
+
+.Social__footer-btn:hover,
+.Social__footer-btn:focus {
+  opacity: 1;
+}
+
+.Social__footer-btn:active,
+.Social__footer-btn--active {
+  opacity: 1;
+  background-position: -5px -149px;
+}

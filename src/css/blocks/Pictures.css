@@ -1,0 +1,23 @@
+.Pictures {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 10px;
+
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+}
+
+@media (min-width: 1024px) and (max-width: 1359px) {
+  .Pictures {
+    -ms-grid-columns: (1fr)[5];
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 0) and (max-width: 1023px) {
+  .Pictures {
+    -ms-grid-columns: (1fr)[3];
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+

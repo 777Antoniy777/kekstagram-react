@@ -1,0 +1,26 @@
+/* Подвал сайта
+   ========================================================================== */
+
+.Page-footer {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: solid 1px #cccccc;
+}
+
+.Page-footer__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+        align-items: flex-start;
+
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.Page-footer__contacts {
+  background-color: inherit;
+}

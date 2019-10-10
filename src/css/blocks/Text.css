@@ -1,0 +1,40 @@
+/**
+ * Блок добавления хэштегов и комментария к изображению
+ */
+
+.Text {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 30px;
+
+  text-align: center;
+  border: none;
+}
+
+.Text__hashtags {
+  width: 450px;
+
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-weight: 400;
+  color: #000000;
+
+  border-radius: 5px;
+}
+
+.Text__description {
+  width: 450px;
+  height: 100px;
+
+  margin: 0 auto;
+  padding: 15px 10px;
+
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-weight: 400;
+  color: #000000;
+
+  border-radius: 5px;
+}
