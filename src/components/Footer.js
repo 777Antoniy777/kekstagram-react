@@ -5,12 +5,12 @@ import Contacts from './Contacts';
 
 function Footer() {
   return (
-    <footer className="Page-footer Container">
+    <footer className="Page-footer container">
 
       <div className="Page-footer__wrapper">
 
         <Copyright />
-        
+
         <Contacts />
 
       </div>

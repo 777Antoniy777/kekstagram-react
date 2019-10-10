@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/blocks/Main.css';
-import ImgFilters from './Img-filters';
+import ImgFilters from './ImgFilters';
 import Pictures from './Pictures';
 import BigPicture from './BigPicture';
 

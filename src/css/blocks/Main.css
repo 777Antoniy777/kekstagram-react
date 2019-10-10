@@ -1,9 +1,9 @@
-.Container {
+.container {
   width: 1360px;
   margin: 0 auto;
 }
 
-.Modal-open {
+.modal-open {
   height: 100vh;
   overflow: hidden;
 }
@@ -29,57 +29,11 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-/*
- * Подпись к изображению
- */
-
-.Likes-count {
-  position: relative;
-  padding-left: 30px;
-
-  color: #f48181;
-
-  cursor: pointer;
-}
-
-.Likes-count:hover {
-  color: #e90000;
-}
-
-.Likes-count::before {
-  content: "";
-  position: absolute;
-
-  top: 3px;
-  left: 5px;
-
-  width: 20px;
-  height: 18px;
-
-  background-image: url("../../img/sprite.png");
-  background-repeat: no-repeat;
-
-  background-position: -5px -56px;
-  opacity: 0.5;
-}
-
-.Likes-count:hover::before,
-.Likes-count:focus::before {
-  opacity: 1;
-}
-
-.Likes-count:active::before,
-.Likes-count--active::before {
-  opacity: 1;
-  background-position: -5px -81px;
-}
-
-
 /**
  * Спиннер загрузки комментариев и его анимация
  */
 
-.Spinner::after {
+.spinner::after {
   content: "";
   position: absolute;
   left: 200px;
@@ -128,13 +82,13 @@
    ========================================================================== */
 
 @media (min-width: 1024px) and (max-width: 1359px) {
-  .Container {
+  .container {
     width: 980px;
   }
 }
 
 @media (min-width: 0) and (max-width: 1023px) {
-  .Container {
+  .container {
     width: 600px;
   }
 }

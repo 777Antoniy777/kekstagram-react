@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/blocks/Social.css';
 import CommentsLoader from './CommentsLoader';
+import LikesCount from './LikesCount';
 
 function Social() {
   return (
@@ -10,7 +11,11 @@ function Social() {
       <div className="Social__header">
         <img className="Social__picture" src="img/avatar-1.svg" alt="Аватар автора фотографии" width="35" height="35"/>
         <p className="Social__caption">Тестим новую камеру! =)</p>
-        <p className="Social__likes">Нравится <span className="likes-count">356</span></p>
+        <p className="Social__likes">Нравится
+
+          {/* Количество лайков комментария */}
+          <LikesCount />
+        </p>
       </div>
 
       {/* <!-- Комментарии к изображению --> */}

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/blocks/App.css';
 import Main from './Main';
 import Footer from './Footer';
 import TemplatePicture from './TemplatePicture';
