@@ -5,27 +5,32 @@ import TemplatePicture from './components/TemplatePicture/TemplatePicture';
 import TemplateError from './components/TemplateError/TemplateError';
 import TemplateSuccess from './components/TemplateSuccess/TemplateSuccess';
 
-function App() {
-  return (
-    <div>
-      <Main />
-      <Footer />
+class App extends React.Component {
+  render() {
+    return (
 
-      {/* Шаблон изображения случайного пользователя */}
-      <TemplatePicture />
+      <React.Fragment>
 
-      {/* Сообщение с ошибкой загрузки изображения */}
-      <TemplateError />
+        <Main />
+        <Footer />
 
-      {/* Сообщение об успешной загрузке изображения */}
-      <TemplateSuccess />
+        {/* Шаблон изображения случайного пользователя */}
+        <TemplatePicture />
 
-      {/* Экран загрузки изображения */}
-      <template id="messages">
-        <div className="Img-upload__message Img-upload__message--loading">Загружаем...</div>
-      </template>
-    </div>
-  );
+        {/* Сообщение с ошибкой загрузки изображения */}
+        <TemplateError />
+
+        {/* Сообщение об успешной загрузке изображения */}
+        <TemplateSuccess />
+
+        {/* Экран загрузки изображения */}
+        <template id="messages">
+          <div className="Img-upload__message Img-upload__message--loading">Загружаем...</div>
+        </template>
+        
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
