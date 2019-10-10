@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/blocks/Effects.css';
+import './Effects.css';
 
 function Effects() {
   return (
@@ -64,7 +64,7 @@ function Effects() {
         </li>
 
       </ul>
-      
+
     </fieldset>
 
   );

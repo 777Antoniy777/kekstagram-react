@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/blocks/TemplateError.css';
+import './TemplateError.css';
 
 function TemplateError() {
   return (

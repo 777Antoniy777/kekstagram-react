@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/blocks/ImgFilters.css';
+import './ImgFilters.css';
 
 function ImgFilters() {
   return (

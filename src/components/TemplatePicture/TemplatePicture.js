@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/blocks/TemplatePicture.css';
+import './TemplatePicture.css';
 
 function TemplatePicture() {
   return (

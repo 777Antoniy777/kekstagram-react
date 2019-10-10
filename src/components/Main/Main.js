@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/blocks/Main.css';
-import ImgFilters from './ImgFilters';
-import Pictures from './Pictures';
-import BigPicture from './BigPicture';
+import './Main.css';
+import ImgFilters from '../ImgFilters/ImgFilters';
+import Pictures from '../Pictures/Pictures';
+import BigPicture from '../BigPicture/BigPicture';
 
 function Main() {
   return (

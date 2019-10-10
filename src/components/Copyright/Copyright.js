@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../img/svg/htmla-logo.svg';
-import '../css/blocks/Copyright.css';
+import logo from '../../img/svg/htmla-logo.svg';
+import './Copyright.css';
 
 function Copyright() {
   return (

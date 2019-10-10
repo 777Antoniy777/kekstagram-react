@@ -1,9 +1,9 @@
 import React from 'react';
-import Main from './Main';
-import Footer from './Footer';
-import TemplatePicture from './TemplatePicture';
-import TemplateError from './TemplateError';
-import TemplateSuccess from './TemplateSuccess';
+import Main from './components/Main/Main';
+import Footer from './components/Footer/Footer';
+import TemplatePicture from './components/TemplatePicture/TemplatePicture';
+import TemplateError from './components/TemplateError/TemplateError';
+import TemplateSuccess from './components/TemplateSuccess/TemplateSuccess';
 
 function App() {
   return (

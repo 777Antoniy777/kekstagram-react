@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/blocks/CommentsLoader.css';
+import './CommentsLoader.css';
 
 function CommentsLoader() {
   return (

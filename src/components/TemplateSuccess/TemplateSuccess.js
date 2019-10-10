@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/blocks/TemplateSuccess.css';
+import './TemplateSuccess.css';
 
 function TemplateSuccess() {
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
-import '../css/blocks/ImgUpload.css';
-import Scale from './Scale';
-import EffectLevel from './EffectLevel';
-import Effects from './Effects';
-import Text from './Text';
+import './ImgUpload.css';
+import Scale from '../Scale/Scale';
+import EffectLevel from '../EffectLevel/EffectLevel';
+import Effects from '../Effects/Effects';
+import Text from '../Text/Text';
 
 function ImgUpload() {
   return (
