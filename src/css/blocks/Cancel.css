@@ -1,0 +1,36 @@
+/**
+ * Кнопка закрытия модального окна
+ */
+
+.Cancel {
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  width: 42px;
+  height: 42px;
+
+  font-size: 0;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  background-image: url("../../img/svg/icon-cross.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 0;
+  border-radius: 2px;
+
+  opacity: 0.6;
+}
+
+.Cancel:hover,
+.Cancel:focus {
+  background-color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+}
+
+.Cancel:active {
+  -webkit-transform: translateY(1px);
+      -ms-transform: translateY(1px);
+          transform: translateY(1px);
+}
