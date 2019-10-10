@@ -25,9 +25,9 @@ class App extends React.Component {
 
         {/* Экран загрузки изображения */}
         <template id="messages">
-          <div className="Img-upload__message Img-upload__message--loading">Загружаем...</div>
+          <div className="Img-upload__message Img-upload__message--loading">Загружаем....</div>
         </template>
-        
+
       </React.Fragment>
     );
   }
