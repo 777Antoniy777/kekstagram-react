@@ -12,7 +12,7 @@
  * Оверлей под экранами
  */
 
-.Overlay {
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -29,165 +29,9 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Блок, в котором размещаются фотографии других пользователей
-   ========================================================================== */
-
-.Picture {
-  position: relative;
-  line-height: 0;
-}
-
-.Picture__img {
-  max-width: auto;
-  width: 100%;
-  height: auto;
-}
-
-.Picture__info {
-  display: none;
-
-  margin: 0;
-  padding: 15px;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
-
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
-}
-
-.Picture:hover .Picture__info,
-.Picture:focus .Picture__info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.Picture_.Comments,
-.Picture__likes {
-  padding-left: 30px;
-  position: relative;
-
-  font-family: "Open Sans", "Arial", sans-serif;
-  font-weight: 400;
-  color: #ffffff;
-}
-
-.Picture_.Comments {
-  margin-right: 10px;
-}
-
-.Picture_.Comments::before,
-.Picture__likes::before {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: -7px;
-
-  background-image: url("../../img/sprite.png");
-  background-repeat: no-repeat;
-}
-
-.Picture_.Comments::before {
-  width: 20px;
-  height: 16px;
-
-  background-position: -5px -5px;
-}
-
-.Picture__likes::before {
-  width: 20px;
-  height: 16px;
-
-  background-position: -5px -31px;
-}
-
-/* Окно полноэкранного просмотра изображения
-   ========================================================================== */
-
-.Big-picture__preview {
-  position: absolute;
-  top: 60px;
-  left: 50%;
-
-  max-width: 600px;
-  min-height: 600px;
-
-  padding-bottom: 60px;
-
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
-}
-
-.Big-picture__img img {
-  display: block;
-}
-
-.Social {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-     -ms-flex-direction: column;
-         flex-direction: column;
-
-  max-width: 600px;
-
-  color: #000000;
-  font-family: "Open Sans", "Arial", sans-serif;
-  font-weight: 400;
-  text-transform: none;
-
-  background-color: #ffffff;
-}
-
-
 /*
  * Подпись к изображению
  */
-
-.Social__header {
-  padding: 15px 15px;
-
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-
-  -webkit-box-pack: start;
-     -ms-flex-pack: start;
-   justify-content: flex-start;
-
-  -webkit-box-align: flex-start;
-     -ms-flex-align: flex-start;
-        align-items: flex-start;
-
-  border-bottom: 1px solid #cccccc;
-}
-
-.Social_.Picture {
-  display: block;
-  -ms-flex-negative: 0;
-        flex-shrink: 0;
-  margin-right: 15px;
-}
-
-.Social__caption {
-  margin: 0;
-  margin-right: 15px;
-}
-
-.Social__likes {
-  margin: 0;
-  margin-left: auto;
-  min-width: 125px;
-}
 
 .Likes-count {
   position: relative;
@@ -231,72 +75,11 @@
 }
 
 
-/*
- * Комментарии к изображению
- */
-
-.Social_.Comments {
-  -ms-flex-preferred-size: 100%;
-               flex-basis: 100%;
-
-  list-style: none;
-
-  margin: 0;
-  padding: 0;
-  padding-top: 20px;
-}
-
-.Social__comment {
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 20px;
-
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-
-  -webkit-box-align: center;
-     -ms-flex-align: center;
-        align-items: center;
-}
-
-.Social__comment-count {
-  padding-top: 20px;
-  padding-left: 65px;
-}
-
-.Social_.Comments-loader {
-  padding: 0;
-  padding-left: 65px;
-  padding-bottom: 20px;
-  position: relative;
-
-  text-align: left;
-  color: #3b77c0;
-
-  background: none;
-  border: none;
-}
-
-.Comments-loader {
-  text-align: left;
-  color: #3b77c0;
-
-  background: none;
-  border: none;
-}
-
-.Social__text {
-  margin: 0;
-}
-
-
 /**
  * Спиннер загрузки комментариев и его анимация
  */
 
-.Spinner::after,
-.Comments-loader:active::after {
+.Spinner::after {
   content: "";
   position: absolute;
   left: 200px;
@@ -339,79 +122,6 @@
   87.5% {
     box-shadow: 0em -2.6em 0em 0em rgba(51,102,204, 0.2), 1.8em -1.8em 0 0em rgba(51,102,204, 0.2), 2.5em 0em 0 0em rgba(51,102,204, 0.2), 1.75em 1.75em 0 0em rgba(51,102,204, 0.2), 0em 2.5em 0 0em rgba(51,102,204, 0.2), -1.8em 1.8em 0 0em rgba(51,102,204, 0.5), -2.6em 0em 0 0em rgba(51,102,204, 0.7), -1.8em -1.8em 0 0em #3b77c0;
   }
-}
-
-
-/*
- * Форма для отправки комментария
- */
-
-.Social__footer {
-  border-top: 1px solid #cccccc;
-}
-
-.Big-picture__cancel {
-  position: absolute;
-  top: 0;
-  left: 100%;
-
-  margin-left: 10px;
-}
-
-.Social__footer {
-  position: relative;
-
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-
-  padding: 15px;
-}
-
-.Social__footer-commentor {
-  display: block;
-
-  margin-right: 15px;
-}
-
-.Social__footer-text {
-  width: 100%;
-
-  border: none;
-}
-
-.Social__footer-btn {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-
-  width: 34px;
-  height: 34px;
-
-  font-size: 0;
-
-  background-image: url("../../img/sprite.png");
-  background-repeat: no-repeat;
-  background-position: -5px -106px;
-
-  opacity: 0.6;
-
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-
-  border: none;
-}
-
-.Social__footer-btn:hover,
-.Social__footer-btn:focus {
-  opacity: 1;
-}
-
-.Social__footer-btn:active,
-.Social__footer-btn--active {
-  opacity: 1;
-  background-position: -5px -149px;
 }
 
 /**
@@ -537,3 +247,41 @@
     width: 600px;
   }
 }
+
+/**
+ * Кнопка закрытия модального окна
+ */
+
+ .cancel {
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  width: 42px;
+  height: 42px;
+
+  font-size: 0;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  background-image: url("../../img/svg/icon-cross.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 0;
+  border-radius: 2px;
+
+  opacity: 0.6;
+}
+
+.cancel:hover,
+.cancel:focus {
+  background-color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+}
+
+.cancel:active {
+  -webkit-transform: translateY(1px);
+      -ms-transform: translateY(1px);
+          transform: translateY(1px);
+}
+

@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/blocks/ImgUpload.css';
 import Scale from './Scale';
 import EffectLevel from './EffectLevel';
-import Cancel from './Cancel';
 import Effects from './Effects';
 import Text from './Text';
 
@@ -39,7 +38,7 @@ function ImgUpload() {
                 <EffectLevel />
 
                 {/* <!-- Кнопка для закрытия формы редактирования изображения --> */}
-                <Cancel />
+                <button type="reset" className="Img-upload__cancel  cancel" id="upload-cancel">Закрыть</button>
               </div>
 
               {/* <!-- Наложение эффекта на изображение --> */}
@@ -50,6 +49,7 @@ function ImgUpload() {
 
               {/* <!-- Кнопка для отправки данных на сервер --> */}
               <button type="submit" className="Img-upload__submit" id="upload-submit">Опубликовать</button>
+
             </div>
           </div>
         </form>
