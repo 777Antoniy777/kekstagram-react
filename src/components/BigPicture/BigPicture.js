@@ -1,6 +1,6 @@
 import React from 'react';
-import '../css/blocks/BigPicture.css';
-import Social from './Social';
+import './BigPicture.css';
+import Social from '../Social/Social';
 
 function BigPicture() {
   return (

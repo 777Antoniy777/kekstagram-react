@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/blocks/EffectLevel.css';
+import './EffectLevel.css';
 
 function EffectLevel() {
   return (

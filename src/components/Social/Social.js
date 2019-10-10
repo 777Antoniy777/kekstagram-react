@@ -1,7 +1,7 @@
 import React from 'react';
-import '../css/blocks/Social.css';
-import CommentsLoader from './CommentsLoader';
-import LikesCount from './LikesCount';
+import './Social.css';
+import CommentsLoader from '../CommentsLoader/CommentsLoader';
+import LikesCount from '../LikesCount/LikesCount';
 
 function Social() {
   return (

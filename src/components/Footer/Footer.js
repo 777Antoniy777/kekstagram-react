@@ -1,7 +1,7 @@
 import React from 'react';
-import '../css/blocks/Footer.css';
-import Copyright from './Copyright';
-import Contacts from './Contacts';
+import './Footer.css';
+import Copyright from '../Copyright/Copyright';
+import Contacts from '../Contacts/Contacts';
 
 function Footer() {
   return (

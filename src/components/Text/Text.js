@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/blocks/Text.css';
+import './Text.css';
 
 function Text() {
   return (

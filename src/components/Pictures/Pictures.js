@@ -1,6 +1,6 @@
 import React from 'react';
-import '../css/blocks/Pictures.css';
-import ImgUpload from './ImgUpload';
+import './Pictures.css';
+import ImgUpload from '../ImgUpload/ImgUpload';
 
 function Pictures() {
   return (
