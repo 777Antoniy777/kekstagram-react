@@ -17,8 +17,7 @@ function ImgUpload() {
           {/* <!-- Изначальное состояние поля для загрузки изображения --> */}
           <fieldset className="Img-upload__start">
             <input type="file" id="upload-file" className="Img-upload__input  visually-hidden" name="filename" required/>
-            {/* for="upload-file" */}
-            <label className="Img-upload__label  Img-upload__control">Загрузить</label>
+            <label className="Img-upload__label  Img-upload__control" htmlFor="upload-file">Загрузить</label>
           </fieldset>
 
           {/* <!-- Форма редактирования изображения --> */}

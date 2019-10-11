@@ -6,6 +6,20 @@ import TemplateError from './components/TemplateError/TemplateError';
 import TemplateSuccess from './components/TemplateSuccess/TemplateSuccess';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pictures: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch('https://js.dump.academy/kekstagram/data')
+      .then(response => response.json())
+      .then(data => this.setState({ pictures: data }))
+  }
+
   render() {
     return (
 
