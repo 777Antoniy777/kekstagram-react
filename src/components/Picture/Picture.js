@@ -17,7 +17,7 @@ const Picture = (props) => {
           <img className="Picture__img" src={props.url} width="182" height="182" alt={`Картинка ${parseInt(props.url.split('/')[1])}`}/>
 
           <p className="Picture__info">
-            <span className="Picture__comments"></span>
+            <span className="Picture__comments">{props.comments.length}</span>
             <span className="Picture__likes">{props.likes}</span>
           </p>
         </a>

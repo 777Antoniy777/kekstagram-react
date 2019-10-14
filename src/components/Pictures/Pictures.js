@@ -31,8 +31,9 @@ const Pictures = (props) => {
               url={elem.url}
               likes={elem.likes}
               description={elem.description}
+              comments={elem.comments}
             />
-            
+
           )
           // <Picture pictures={this.context}/>
         }
