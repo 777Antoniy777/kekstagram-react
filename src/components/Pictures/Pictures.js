@@ -1,20 +1,45 @@
 import React from 'react';
 import './Pictures.css';
 import ImgUpload from '../ImgUpload/ImgUpload';
+import Picture from '../Picture/Picture';
 
-function Pictures() {
+const Pictures = (props) => {
+  // static contextType = ColorContext;
+  console.log(props.pictures)
+
   return (
 
-    // Контейнер для изображений от других пользователей
-    <section className="Pictures  container">
-      <h2 className="Pictures__title  visually-hidden">Фотографии других пользователей</h2>
+    <React.Fragment>
 
-      {/* <!-- Поле для загрузки нового изображения на сайт --> */}
-      <ImgUpload />
+      { !props.pictures &&
+        <div>Picture is loading...</div>
+      }
 
-      {/* <!-- Здесь будут изображения других пользователей --> */}
+      {/* Контейнер для изображений от других пользователей */}
+      <section className="Pictures  container">
+        <h2 className="Pictures__title  visually-hidden">Фотографии других пользователей</h2>
 
-    </section>
+        {/* Поле для загрузки нового изображения на сайт */}
+        <ImgUpload />
+
+        {/* Здесь будут изображения других пользователей */}
+        { props.pictures &&
+          props.pictures.map(elem =>
+
+            <Picture
+              key={parseInt(elem.url.split('/')[1])}
+              url={elem.url}
+              likes={elem.likes}
+              description={elem.description}
+            />
+            
+          )
+          // <Picture pictures={this.context}/>
+        }
+
+      </section>
+
+    </React.Fragment>
 
   );
 }

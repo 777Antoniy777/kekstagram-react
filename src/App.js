@@ -5,9 +5,11 @@ import TemplatePicture from './components/TemplatePicture/TemplatePicture';
 import TemplateError from './components/TemplateError/TemplateError';
 import TemplateSuccess from './components/TemplateSuccess/TemplateSuccess';
 
+export const ColorContext = React.createContext('red');
+console.log(ColorContext)
 class App extends React.Component {
   state = {
-    pictures: [],
+    pictures: null,
   }
 
   componentDidMount() {
@@ -26,7 +28,12 @@ class App extends React.Component {
 
       <React.Fragment>
 
-        <Main />
+        <Main pictures={this.state.pictures} />
+        {/* TEST */}
+        {/* <ColorContext.Provider value="blue"> */}
+          {/* <Main /> */}
+        {/* </ColorContext.Provider> */}
+
         <Footer />
 
         {/* Шаблон изображения случайного пользователя */}

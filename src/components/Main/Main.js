@@ -4,7 +4,8 @@ import ImgFilters from '../ImgFilters/ImgFilters';
 import Pictures from '../Pictures/Pictures';
 import BigPicture from '../BigPicture/BigPicture';
 
-function Main() {
+const Main = (props) => {
+
   return (
 
     <main className="Main">
@@ -13,7 +14,8 @@ function Main() {
       <ImgFilters />
 
       {/* Контейнер для изображений от других пользователей */}
-      <Pictures />
+      <Pictures pictures={props.pictures}/>
+      {/* <Pictures /> */}
 
       {/* <!-- Полноэкранный показ изображения --> */}
       <BigPicture />
