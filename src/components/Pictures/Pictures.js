@@ -1,20 +1,43 @@
 import React from 'react';
 import './Pictures.css';
 import ImgUpload from '../ImgUpload/ImgUpload';
+import Picture from '../Picture/Picture';
 
-function Pictures() {
+const Pictures = (props) => {
+
   return (
 
-    // Контейнер для изображений от других пользователей
-    <section className="Pictures  container">
-      <h2 className="Pictures__title  visually-hidden">Фотографии других пользователей</h2>
+    <React.Fragment>
 
-      {/* <!-- Поле для загрузки нового изображения на сайт --> */}
-      <ImgUpload />
+      { !props.pictures &&
+        <div>Pictures is loading...</div>
+      }
 
-      {/* <!-- Здесь будут изображения других пользователей --> */}
+      {/* Контейнер для изображений от других пользователей */}
+      <section className="Pictures  container">
+        <h2 className="Pictures__title  visually-hidden">Фотографии других пользователей</h2>
 
-    </section>
+        {/* Поле для загрузки нового изображения на сайт */}
+        <ImgUpload />
+
+        {/* Здесь будут изображения других пользователей */}
+        { props.pictures &&
+          props.pictures.map((elem, index) =>
+
+            <Picture
+              key={index}
+              url={elem.url}
+              likes={elem.likes}
+              description={elem.description}
+              comments={elem.comments}
+            />
+
+          )
+        }
+
+      </section>
+
+    </React.Fragment>
 
   );
 }

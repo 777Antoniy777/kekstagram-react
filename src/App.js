@@ -7,7 +7,7 @@ import TemplateSuccess from './components/TemplateSuccess/TemplateSuccess';
 
 class App extends React.Component {
   state = {
-    pictures: [],
+    pictures: null,
   }
 
   componentDidMount() {
@@ -26,7 +26,8 @@ class App extends React.Component {
 
       <React.Fragment>
 
-        <Main />
+        <Main pictures={this.state.pictures} />
+
         <Footer />
 
         {/* Шаблон изображения случайного пользователя */}
