@@ -1,29 +1,20 @@
 import React from 'react';
 import './Picture.css';
 
-
 const Picture = (props) => {
 
   return (
 
-    // <React.Fragment>
+      <a href="#s" className="Picture" key={props.key}>
 
-      // {/* { !props.pictures &&
-      //   <div>Picture is loading...</div>
-      // } */}
+        <img className="Picture__img" src={require(`../../img/${props.url}`)} width="182" height="182" alt={`Картинка ${parseInt(props.url.split('/')[1])}`}/>
 
-      // {/* { props.pictures && */}
-        <a href="#s" className="Picture" key={props.key}>
-          <img className="Picture__img" src={props.url} width="182" height="182" alt={`Картинка ${parseInt(props.url.split('/')[1])}`}/>
+        <p className="Picture__info">
+          <span className="Picture__comments">{props.comments.length}</span>
+          <span className="Picture__likes">{props.likes}</span>
+        </p>
+      </a>
 
-          <p className="Picture__info">
-            <span className="Picture__comments">{props.comments.length}</span>
-            <span className="Picture__likes">{props.likes}</span>
-          </p>
-        </a>
-      // }
-
-    // </React.Fragment>
   );
 }
 

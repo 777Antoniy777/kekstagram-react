@@ -4,15 +4,13 @@ import ImgUpload from '../ImgUpload/ImgUpload';
 import Picture from '../Picture/Picture';
 
 const Pictures = (props) => {
-  // static contextType = ColorContext;
-  console.log(props.pictures)
 
   return (
 
     <React.Fragment>
 
       { !props.pictures &&
-        <div>Picture is loading...</div>
+        <div>Pictures is loading...</div>
       }
 
       {/* Контейнер для изображений от других пользователей */}
@@ -24,10 +22,10 @@ const Pictures = (props) => {
 
         {/* Здесь будут изображения других пользователей */}
         { props.pictures &&
-          props.pictures.map(elem =>
+          props.pictures.map((elem, index) =>
 
             <Picture
-              key={parseInt(elem.url.split('/')[1])}
+              key={index}
               url={elem.url}
               likes={elem.likes}
               description={elem.description}
@@ -35,7 +33,6 @@ const Pictures = (props) => {
             />
 
           )
-          // <Picture pictures={this.context}/>
         }
 
       </section>
