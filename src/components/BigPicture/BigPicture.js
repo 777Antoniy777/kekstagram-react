@@ -12,11 +12,15 @@ const BigPicture = (props) => {
 
         {/* <!-- Просмотр изображения --> */}
         <div className="Big-picture__img">
-          <img src="img/logo-background-3.jpg" alt="Девушка в купальнике" width="600" height="600"/>
+          <img src={ props.modalUrl } alt="Девушка в купальнике" width="600" height="600"/>
         </div>
 
         {/* <!-- Информация об изображении. Подпись, комментарии, количество лайков --> */}
-        <Social />
+        <Social
+          modalLikes= { props.modalLikes }
+          modalDescription={ props.modalDescription }
+          modalComments={ props.modalComments }
+        />
 
         {/* <!-- Кнопка для выхода из полноэкранного просмотра изображени --> */}
         <button type="reset" className="Big-picture__cancel  cancel" id="picture-cancel">Закрыть</button>

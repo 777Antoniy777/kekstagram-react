@@ -1,25 +1,32 @@
 import React from 'react';
 import './Social.css';
+import avatar from '../../img/avatar-1.svg';
 import CommentsLoader from '../CommentsLoader/CommentsLoader';
 import LikesCount from '../LikesCount/LikesCount';
 
-function Social() {
+const Social = (props) => {
   return (
 
     // Информация об изображении. Подпись, комментарии, количество лайков
     <div className="Big-picture__social  Social">
       <div className="Social__header">
-        <img className="Social__picture" src="img/avatar-1.svg" alt="Аватар автора фотографии" width="35" height="35"/>
-        <p className="Social__caption">Тестим новую камеру! =)</p>
+        <img className="Social__picture" src={ avatar } alt="Аватар автора фотографии" width="35" height="35"/>
+        <p className="Social__caption">{ props.modalDescription }</p>
         <p className="Social__likes">Нравится
 
           {/* Количество лайков комментария */}
-          <LikesCount />
+          <LikesCount modalLikes= { props.modalLikes } />
         </p>
       </div>
 
       {/* <!-- Комментарии к изображению --> */}
-      <div className="Social__comment-count"><span className="current-comments-count">5</span> из <span className="comments-count">125</span> комментариев</div>
+      <div className="Social__comment-count">
+        <span className="current-comments-count">5</span>
+        из
+        <span className="comments-count">{ props.modalComments.length }</span>
+        комментариев
+      </div>
+      
       <ul className="Social__comments">
         <li className="Social__comment">
           <img className="Social__picture" src="img/avatar-4.svg" alt="Аватар комментатора фотографии" width="35" height="35"/>

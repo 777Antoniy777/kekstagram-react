@@ -31,8 +31,6 @@ const Pictures = (props) => {
               likes={ elem.likes }
               description={ elem.description }
               comments={ elem.comments }
-
-              modalStatus= { props.modalStatus }
               onSetStatus= { props.onSetStatus }
             />
 

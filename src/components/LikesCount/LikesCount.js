@@ -1,10 +1,10 @@
 import React from 'react';
 import './LikesCount.css';
 
-function LikesCount() {
+const LikesCount = (props) => {
   return (
 
-    <span className="Likes-count">356</span>
+    <span className="Likes-count">{ props.modalLikes }</span>
 
   );
 }
