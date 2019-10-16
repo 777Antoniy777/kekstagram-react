@@ -2,11 +2,11 @@ import React from 'react';
 import './BigPicture.css';
 import Social from '../Social/Social';
 
-function BigPicture() {
+const BigPicture = (props) => {
   return (
 
     // Полноэкранный показ изображения
-    <section className="Big-picture  overlay  hidden">
+    <section className="Big-picture overlay">
       <h2 className="Big-picture__title  visually-hidden">Просмотр фотографии</h2>
       <div className="Big-picture__preview">
 

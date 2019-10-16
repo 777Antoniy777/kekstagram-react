@@ -5,6 +5,15 @@ import Pictures from '../Pictures/Pictures';
 import BigPicture from '../BigPicture/BigPicture';
 
 const Main = (props) => {
+  const state = {
+    modalStatus: false,
+  };
+
+  function handleSetStatus(st) {
+    state.modalStatus = st;
+    console.log(st)
+    console.log(state)
+  }
 
   return (
 
@@ -14,11 +23,22 @@ const Main = (props) => {
       <ImgFilters />
 
       {/* Контейнер для изображений от других пользователей */}
-      <Pictures pictures={props.pictures}/>
-      {/* <Pictures /> */}
+      <Pictures
+        pictures={ props.pictures }
+        modalStatus={ state.modalStatus }
+        onSetStatus= { handleSetStatus }
+      />
 
-      {/* <!-- Полноэкранный показ изображения --> */}
-      <BigPicture />
+      {/* Полноэкранный показ изображения */}
+      { state.modalStatus &&
+
+        <BigPicture />
+
+      }
+
+
+
+      {/* <BigPicture /> */}
 
     </main>
   );

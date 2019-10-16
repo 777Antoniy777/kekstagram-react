@@ -2,6 +2,7 @@ import React from 'react';
 import './Pictures.css';
 import ImgUpload from '../ImgUpload/ImgUpload';
 import Picture from '../Picture/Picture';
+import Preloader from '../Preloader/Preloader'
 
 const Pictures = (props) => {
 
@@ -10,7 +11,7 @@ const Pictures = (props) => {
     <React.Fragment>
 
       { !props.pictures &&
-        <div>Pictures is loading...</div>
+        <Preloader />
       }
 
       {/* Контейнер для изображений от других пользователей */}
@@ -25,11 +26,14 @@ const Pictures = (props) => {
           props.pictures.map((elem, index) =>
 
             <Picture
-              key={index}
-              url={elem.url}
-              likes={elem.likes}
-              description={elem.description}
-              comments={elem.comments}
+              key={ index }
+              url={ elem.url }
+              likes={ elem.likes }
+              description={ elem.description }
+              comments={ elem.comments }
+
+              modalStatus= { props.modalStatus }
+              onSetStatus= { props.onSetStatus }
             />
 
           )
