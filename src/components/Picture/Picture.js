@@ -9,21 +9,26 @@ const Picture = (props) => {
   const pictureDescription = props.description
   const pictureComments = props.comments;
 
-  function setModalStatus(evt) {
+  function setModalOptions(evt) {
     evt.preventDefault();
 
-    props.onSetStatus(
-      true,
+    const { onSetStatus, onSetValues, onBodyStatus } = props;
+
+    onSetStatus(true);
+    onBodyStatus(evt);
+
+    onSetValues(
       pictureSrc,
+      pictureAlt,
       pictureLikes,
       pictureDescription,
       pictureComments
     );
-  }
+  };
 
   return (
 
-    <a href="#s" className="Picture" key={ props.key } onClick={ setModalStatus } >
+    <a href="#s" className="Picture" onClick={ setModalOptions } >
 
       <img className="Picture__img" src={ pictureSrc } width="182" height="182" alt={ pictureAlt }/>
 

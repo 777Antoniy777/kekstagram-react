@@ -31,7 +31,10 @@ const Pictures = (props) => {
               likes={ elem.likes }
               description={ elem.description }
               comments={ elem.comments }
-              onSetStatus= { props.onSetStatus }
+              onSetStatus={ props.onSetStatus }
+              onSetValues={ props.onSetValues }
+
+              onBodyStatus={ props.onBodyStatus }
             />
 
           )

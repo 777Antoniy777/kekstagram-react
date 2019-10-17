@@ -3,6 +3,31 @@ import './BigPicture.css';
 import Social from '../Social/Social';
 
 const BigPicture = (props) => {
+  const { onSetStatus, onBodyStatus } = props
+
+  function setBigPictureOptions(evt) {
+    evt.preventDefault();
+
+    onSetStatus(false);
+    onBodyStatus(evt);
+  }
+
+  function test() {
+    function buttonCloseKeydownHandler(evt) {
+
+      if (evt.keyCode === 27) {
+        evt.preventDefault();
+
+        onSetStatus(false);
+        onBodyStatus(evt);
+      }
+
+      document.removeEventListener('keydown', buttonCloseKeydownHandler);
+    }
+    document.addEventListener('keydown', buttonCloseKeydownHandler);
+  }
+  test()
+
   return (
 
     // Полноэкранный показ изображения
@@ -12,7 +37,7 @@ const BigPicture = (props) => {
 
         {/* <!-- Просмотр изображения --> */}
         <div className="Big-picture__img">
-          <img src={ props.modalUrl } alt="Девушка в купальнике" width="600" height="600"/>
+          <img src={ props.modalUrl } alt={ props.modalAlt } width="600" height="600"/>
         </div>
 
         {/* <!-- Информация об изображении. Подпись, комментарии, количество лайков --> */}
@@ -23,7 +48,15 @@ const BigPicture = (props) => {
         />
 
         {/* <!-- Кнопка для выхода из полноэкранного просмотра изображени --> */}
-        <button type="reset" className="Big-picture__cancel  cancel" id="picture-cancel">Закрыть</button>
+        <button
+          type="reset"
+          className="Big-picture__cancel cancel"
+          id="picture-cancel"
+          onClick={ setBigPictureOptions }
+          // onKeyDown={ test }
+          >
+            Закрыть
+        </button>
       </div>
     </section>
 
