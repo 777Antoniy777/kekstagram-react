@@ -18,7 +18,7 @@ const Social = (props) => {
         <p className="Social__likes">Нравится
 
           {/* Количество лайков комментария */}
-          <LikesCount modalLikes= { props.modalLikes } />
+          <LikesCount modalLikes={ props.modalLikes } />
         </p>
       </div>
 
@@ -30,6 +30,7 @@ const Social = (props) => {
         { props.modalComments.map((elem, index) =>
 
           <Comment
+            // properties
             key={ index }
             url={ elem.avatar }
             name={ elem.name }

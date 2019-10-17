@@ -5,28 +5,34 @@ import Social from '../Social/Social';
 const BigPicture = (props) => {
   const { onSetStatus, onBodyStatus } = props
 
+  document.addEventListener('keydown', buttonCloseKeydownHandler);
+
+  // function setBigPictureOptions(evt) {
+  //   evt.preventDefault();
+
+  //   onSetStatus(false);
+  //   onBodyStatus(evt);
+  // }
+
+  function buttonCloseKeydownHandler(evt) {
+
+    if (evt.keyCode === 27) {
+      evt.preventDefault();
+
+      onSetStatus(false);
+      onBodyStatus(evt);
+    }
+
+    document.removeEventListener('keydown', buttonCloseKeydownHandler);
+  }
+
   function setBigPictureOptions(evt) {
     evt.preventDefault();
+    document.removeEventListener('keydown', buttonCloseKeydownHandler);
 
     onSetStatus(false);
     onBodyStatus(evt);
   }
-
-  function test() {
-    function buttonCloseKeydownHandler(evt) {
-
-      if (evt.keyCode === 27) {
-        evt.preventDefault();
-
-        onSetStatus(false);
-        onBodyStatus(evt);
-      }
-
-      document.removeEventListener('keydown', buttonCloseKeydownHandler);
-    }
-    document.addEventListener('keydown', buttonCloseKeydownHandler);
-  }
-  test()
 
   return (
 
@@ -42,6 +48,7 @@ const BigPicture = (props) => {
 
         {/* <!-- Информация об изображении. Подпись, комментарии, количество лайков --> */}
         <Social
+          // properties
           modalLikes= { props.modalLikes }
           modalDescription={ props.modalDescription }
           modalComments={ props.modalComments }
@@ -53,9 +60,8 @@ const BigPicture = (props) => {
           className="Big-picture__cancel cancel"
           id="picture-cancel"
           onClick={ setBigPictureOptions }
-          // onKeyDown={ test }
           >
-            Закрыть
+          Закрыть
         </button>
       </div>
     </section>

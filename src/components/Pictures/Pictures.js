@@ -26,14 +26,16 @@ const Pictures = (props) => {
           props.pictures.map((elem, index) =>
 
             <Picture
+              // properties
               key={ index }
               url={ elem.url }
               likes={ elem.likes }
               description={ elem.description }
               comments={ elem.comments }
+
+              // handlers
               onSetStatus={ props.onSetStatus }
               onSetValues={ props.onSetValues }
-
               onBodyStatus={ props.onBodyStatus }
             />
 

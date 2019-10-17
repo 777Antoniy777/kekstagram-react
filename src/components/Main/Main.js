@@ -49,8 +49,6 @@ class Main extends React.Component {
       body.classList.add('modal-open');
     }
 
-    console.log(this.state.modalStatus, body.classList.contains('modal-open'))
-
     // if (body.classList.contains('modal-open')) {
     //   body.classList.remove('modal-open');
     // } else {
@@ -70,10 +68,12 @@ class Main extends React.Component {
 
         {/* Контейнер для изображений от других пользователей */}
         <Pictures
+          // properties
           pictures={ this.props.pictures }
+
+          // handlers
           onSetStatus={ this.onSetStatus }
           onSetValues={ this.onSetValues }
-
           onBodyStatus={ this.onBodyStatus }
         />
 
@@ -81,14 +81,16 @@ class Main extends React.Component {
         { this.state.modalStatus &&
 
           <BigPicture
-            onSetStatus={ this.onSetStatus }
-            onBodyStatus={ this.onBodyStatus }
-
+            // properties
             modalUrl= { this.state.modalUrl }
             modalAlt={ this.state.modalAlt }
             modalLikes= { this.state.modalLikes }
             modalDescription={ this.state.modalDescription }
             modalComments={ this.state.modalComments }
+
+            // handlers
+            onSetStatus={ this.onSetStatus }
+            onBodyStatus={ this.onBodyStatus }
           />
 
         }
