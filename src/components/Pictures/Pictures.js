@@ -23,20 +23,19 @@ const Pictures = (props) => {
 
         {/* Здесь будут изображения других пользователей */}
         { props.pictures &&
-          props.pictures.map((elem, index) =>
+          props.pictures.map((elem) =>
 
             <Picture
               // properties
-              key={ index }
+              key={ elem.url }
               url={ elem.url }
               likes={ elem.likes }
               description={ elem.description }
               comments={ elem.comments }
 
               // handlers
-              onSetStatus={ props.onSetStatus }
-              onSetValues={ props.onSetValues }
-              onBodyStatus={ props.onBodyStatus }
+              onSetModalStatus={ props.onSetModalStatus }
+              onSetModalValues={ props.onSetModalValues }
             />
 
           )

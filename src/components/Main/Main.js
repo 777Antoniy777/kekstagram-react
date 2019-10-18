@@ -5,57 +5,38 @@ import Pictures from '../Pictures/Pictures';
 import BigPicture from '../BigPicture/BigPicture';
 
 class Main extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    // modalUrl: '',
+    // modalAlt: '',
+    // modalLikes: null,
+    // modalDescription: '',
+    // modalComments: [],
 
-    this.state = {
-      modalStatus: false,
-      modalUrl: '',
-      modalAlt: '',
-      modalLikes: null,
-      modalDescription: '',
-      modalComments: [],
-    };
+    // modalValues: null
+  };
 
-    this.onSetStatus = this.onSetStatus.bind(this);
-    this.onSetValues = this.onSetValues.bind(this);
-    this.onBodyStatus = this.onBodyStatus.bind(this);
-  }
-
-  onSetStatus(st) {
-    this.setState({
-      modalStatus: st,
-    });
-  }
-
-  onSetValues(url, alt, likes, desc, com) {
-    this.setState({
+  onSetModalValues = (url, alt, likes, desc, com) => {
+    const obj = {
       modalUrl: url,
       modalAlt: alt,
       modalLikes: likes,
       modalDescription: desc,
       modalComments: com
-    });
-  }
-
-  onBodyStatus(evt) {
-    const target = evt.target;
-    const body = target.closest('body');
-    console.log(this.state.modalStatus, body.classList.contains('modal-open'))
-
-    if (this.state.modalStatus) {
-      body.classList.remove('modal-open');
-    } else {
-      body.classList.add('modal-open');
     }
 
-    // if (body.classList.contains('modal-open')) {
-    //   body.classList.remove('modal-open');
-    // } else {
-    //   body.classList.add('modal-open');
-    // }
+    this.setState({
+      modalValues: obj,
+    });
 
-    // body.classList.toggle('modal-open');
+    // this.setState({
+    //   modalValues.url = url,
+
+    //   modalUrl: url,
+    //   modalAlt: alt,
+    //   modalLikes: likes,
+    //   modalDescription: desc,
+    //   modalComments: com
+    // });
   }
 
   render() {
@@ -72,25 +53,26 @@ class Main extends React.Component {
           pictures={ this.props.pictures }
 
           // handlers
-          onSetStatus={ this.onSetStatus }
-          onSetValues={ this.onSetValues }
-          onBodyStatus={ this.onBodyStatus }
+          onSetModalStatus={ this.props.onSetModalStatus }
+          onSetModalValues={ this.onSetModalValues }
         />
 
         {/* Полноэкранный показ изображения */}
-        { this.state.modalStatus &&
+        { this.props.modalValues &&
 
           <BigPicture
             // properties
-            modalUrl= { this.state.modalUrl }
-            modalAlt={ this.state.modalAlt }
-            modalLikes= { this.state.modalLikes }
-            modalDescription={ this.state.modalDescription }
-            modalComments={ this.state.modalComments }
+            // modalUrl= { this.state.modalUrl }
+            // modalAlt={ this.state.modalAlt }
+            // modalLikes= { this.state.modalLikes }
+            // modalDescription={ this.state.modalDescription }
+            // modalComments={ this.state.modalComments }
+
+
+            modalValues={ this.state.modalValues }
 
             // handlers
-            onSetStatus={ this.onSetStatus }
-            onBodyStatus={ this.onBodyStatus }
+            onSetModalStatus={ this.props.onSetModalStatus }
           />
 
         }

@@ -12,12 +12,11 @@ const Picture = (props) => {
   function setModalOptions(evt) {
     evt.preventDefault();
 
-    const { onSetStatus, onSetValues, onBodyStatus } = props;
+    const { onSetModalStatus, onSetModalValues } = props;
 
-    onSetStatus(true);
-    onBodyStatus(evt);
+    onSetModalStatus(true);
 
-    onSetValues(
+    onSetModalValues(
       pictureSrc,
       pictureAlt,
       pictureLikes,

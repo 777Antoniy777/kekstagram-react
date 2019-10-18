@@ -7,6 +7,41 @@ import TemplateSuccess from './components/TemplateSuccess/TemplateSuccess';
 class App extends React.Component {
   state = {
     pictures: null,
+    modalStatus: false,
+    styles: null,
+
+    modalValues: null,
+  }
+
+  styleWrapper = {
+    height: '100vh',
+    overflow: 'hidden',
+  }
+
+  onSetModalStatus = (st) => {
+    this.setState({
+      modalStatus: st,
+    }, this.onSetWrapperStyles);
+  }
+
+  // при изменении стр. 21 на !this.state.modalStatus, после нажатия на Esc после клика мышкой, не закрывается модалка.
+  // оставил консоль, видно 2 срабатывания Esc (?)
+  // оставил пока реализацию через параметр
+  onSetWrapperStyles = () => {
+
+    console.log(`modalStatus: ${this.state.modalStatus}`);
+    console.log(`styles: ${this.state.styles}`);
+
+    if (this.state.modalStatus) {
+      this.setState({
+        styles: this.styleWrapper
+      });
+    } else {
+      this.setState({
+        styles: null
+      });
+    }
+
   }
 
   componentDidMount() {
@@ -24,17 +59,27 @@ class App extends React.Component {
     return (
 
       <React.Fragment>
+        <div style={ this.state.styles } >
 
-        <Main pictures={ this.state.pictures } />
+          <Main
+            // properties
+            pictures={ this.state.pictures }
+            modalStatus={ this.state.modalStatus }
 
-        <Footer />
+            // handlers
+            onSetModalStatus={ this.onSetModalStatus }
+            onSetWrapperStyles={ this.onSetWrapperStyles }
+          />
 
-        {/* Сообщение с ошибкой загрузки изображения */}
-        <TemplateError />
+          <Footer />
 
-        {/* Сообщение об успешной загрузке изображения */}
-        <TemplateSuccess />
+          {/* Сообщение с ошибкой загрузки изображения */}
+          <TemplateError />
 
+          {/* Сообщение об успешной загрузке изображения */}
+          <TemplateSuccess />
+
+        </div>
       </React.Fragment>
     );
   }
