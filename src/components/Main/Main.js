@@ -5,40 +5,6 @@ import Pictures from '../Pictures/Pictures';
 import BigPicture from '../BigPicture/BigPicture';
 
 class Main extends React.Component {
-  state = {
-    // modalUrl: '',
-    // modalAlt: '',
-    // modalLikes: null,
-    // modalDescription: '',
-    // modalComments: [],
-
-    // modalValues: null
-  };
-
-  onSetModalValues = (url, alt, likes, desc, com) => {
-    const obj = {
-      modalUrl: url,
-      modalAlt: alt,
-      modalLikes: likes,
-      modalDescription: desc,
-      modalComments: com
-    }
-
-    this.setState({
-      modalValues: obj,
-    });
-
-    // this.setState({
-    //   modalValues.url = url,
-
-    //   modalUrl: url,
-    //   modalAlt: alt,
-    //   modalLikes: likes,
-    //   modalDescription: desc,
-    //   modalComments: com
-    // });
-  }
-
   render() {
     return (
 
@@ -53,8 +19,7 @@ class Main extends React.Component {
           pictures={ this.props.pictures }
 
           // handlers
-          onSetModalStatus={ this.props.onSetModalStatus }
-          onSetModalValues={ this.onSetModalValues }
+          onSetModalValues={ this.props.onSetModalValues }
         />
 
         {/* Полноэкранный показ изображения */}
@@ -62,17 +27,10 @@ class Main extends React.Component {
 
           <BigPicture
             // properties
-            // modalUrl= { this.state.modalUrl }
-            // modalAlt={ this.state.modalAlt }
-            // modalLikes= { this.state.modalLikes }
-            // modalDescription={ this.state.modalDescription }
-            // modalComments={ this.state.modalComments }
-
-
-            modalValues={ this.state.modalValues }
+            modalValues={ this.props.modalValues }
 
             // handlers
-            onSetModalStatus={ this.props.onSetModalStatus }
+            onSetModalValues={ this.props.onSetModalValues }
           />
 
         }

@@ -34,7 +34,6 @@ const Pictures = (props) => {
               comments={ elem.comments }
 
               // handlers
-              onSetModalStatus={ props.onSetModalStatus }
               onSetModalValues={ props.onSetModalValues }
             />
 

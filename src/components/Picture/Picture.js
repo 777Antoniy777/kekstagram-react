@@ -2,27 +2,28 @@ import React from 'react';
 import './Picture.css';
 
 const Picture = (props) => {
-  const pictureNumber = parseInt(props.url.split('/')[1]);
+  const { url, likes, description, comments } = props;
+  const pictureNumber = parseInt(url.split('/')[1]);
   const pictureAlt = `Картинка ${pictureNumber}`;
-  const pictureSrc = `/${props.url}`;
-  const pictureLikes = props.likes;
-  const pictureDescription = props.description
-  const pictureComments = props.comments;
+  const pictureSrc = `/${url}`;
+
+  const modalObj = {
+    modalUrl: pictureSrc,
+    modalAlt: pictureAlt,
+    modalLikes: likes,
+    modalDescription: description,
+    modalComments: comments
+  };
 
   function setModalOptions(evt) {
     evt.preventDefault();
 
-    const { onSetModalStatus, onSetModalValues } = props;
-
-    onSetModalStatus(true);
+    const { onSetModalValues } = props;
 
     onSetModalValues(
-      pictureSrc,
-      pictureAlt,
-      pictureLikes,
-      pictureDescription,
-      pictureComments
+      modalObj
     );
+    
   };
 
   return (
@@ -32,8 +33,8 @@ const Picture = (props) => {
       <img className="Picture__img" src={ pictureSrc } width="182" height="182" alt={ pictureAlt }/>
 
       <p className="Picture__info">
-        <span className="Picture__comments">{ pictureComments.length }</span>
-        <span className="Picture__likes">{ pictureLikes }</span>
+        <span className="Picture__comments">{ comments.length }</span>
+        <span className="Picture__likes">{ likes }</span>
       </p>
     </a>
 

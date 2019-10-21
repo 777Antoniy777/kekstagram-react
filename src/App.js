@@ -7,32 +7,24 @@ import TemplateSuccess from './components/TemplateSuccess/TemplateSuccess';
 class App extends React.Component {
   state = {
     pictures: null,
-    modalStatus: false,
-    styles: null,
-
     modalValues: null,
+    styles: null,
   }
 
   styleWrapper = {
     height: '100vh',
     overflow: 'hidden',
-  }
+  };
 
-  onSetModalStatus = (st) => {
+  onSetModalValues = (obj) => {
     this.setState({
-      modalStatus: st,
+      modalValues: obj,
     }, this.onSetWrapperStyles);
   }
 
-  // при изменении стр. 21 на !this.state.modalStatus, после нажатия на Esc после клика мышкой, не закрывается модалка.
-  // оставил консоль, видно 2 срабатывания Esc (?)
-  // оставил пока реализацию через параметр
-  onSetWrapperStyles = () => {
+  onSetWrapperStyles() {
 
-    console.log(`modalStatus: ${this.state.modalStatus}`);
-    console.log(`styles: ${this.state.styles}`);
-
-    if (this.state.modalStatus) {
+    if (this.state.modalValues) {
       this.setState({
         styles: this.styleWrapper
       });
@@ -64,11 +56,10 @@ class App extends React.Component {
           <Main
             // properties
             pictures={ this.state.pictures }
-            modalStatus={ this.state.modalStatus }
+            modalValues={ this.state.modalValues }
 
             // handlers
-            onSetModalStatus={ this.onSetModalStatus }
-            onSetWrapperStyles={ this.onSetWrapperStyles }
+            onSetModalValues={ this.onSetModalValues }
           />
 
           <Footer />

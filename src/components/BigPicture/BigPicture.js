@@ -3,7 +3,7 @@ import './BigPicture.css';
 import Social from '../Social/Social';
 
 const BigPicture = (props) => {
-  const { onSetModalStatus, modalValues } = props
+  const { onSetModalValues, modalValues } = props
 
   document.addEventListener('keydown', buttonCloseKeydownHandler);
 
@@ -11,7 +11,7 @@ const BigPicture = (props) => {
 
     if (evt.keyCode === 27) {
       evt.preventDefault();
-      onSetModalStatus(false);
+      onSetModalValues(null);
 
       document.removeEventListener('keydown', buttonCloseKeydownHandler);
     }
@@ -20,7 +20,7 @@ const BigPicture = (props) => {
   function setBigPictureOptions(evt) {
     evt.preventDefault();
 
-    onSetModalStatus(false);
+    onSetModalValues(null);
   }
 
   return (
@@ -30,12 +30,12 @@ const BigPicture = (props) => {
       <h2 className="Big-picture__title  visually-hidden">Просмотр фотографии</h2>
       <div className="Big-picture__preview">
 
-        {/* <!-- Просмотр изображения --> */}
+        {/* Просмотр изображения */}
         <div className="Big-picture__img">
           <img src={ modalValues.modalUrl } alt={ modalValues.modalAlt } width="600" height="600"/>
         </div>
 
-        {/* <!-- Информация об изображении. Подпись, комментарии, количество лайков --> */}
+        {/* Информация об изображении. Подпись, комментарии, количество лайков */}
         <Social
           // properties
           modalLikes= { modalValues.modalLikes }
@@ -43,7 +43,7 @@ const BigPicture = (props) => {
           modalComments={ modalValues.modalComments }
         />
 
-        {/* <!-- Кнопка для выхода из полноэкранного просмотра изображени --> */}
+        {/* Кнопка для выхода из полноэкранного просмотра изображения */}
         <button
           type="reset"
           className="Big-picture__cancel cancel"
