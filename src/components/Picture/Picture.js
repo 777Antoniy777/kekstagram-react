@@ -20,10 +20,7 @@ const Picture = (props) => {
 
     const { onSetModalValues } = props;
 
-    onSetModalValues(
-      modalObj
-    );
-    
+    onSetModalValues(modalObj);
   };
 
   return (

@@ -31,6 +31,10 @@ class Main extends React.Component {
 
             // handlers
             onSetModalValues={ this.props.onSetModalValues }
+
+            // test
+            commentsCount={ this.props.commentsCount }
+            onSetCommentsValue={ this.props.onSetCommentsValue }
           />
 
         }

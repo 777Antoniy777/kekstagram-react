@@ -41,6 +41,10 @@ const BigPicture = (props) => {
           modalLikes= { modalValues.modalLikes }
           modalDescription={ modalValues.modalDescription }
           modalComments={ modalValues.modalComments }
+
+          // test
+          commentsCount={ props.commentsCount }
+          onSetCommentsValue={ props.onSetCommentsValue }
         />
 
         {/* Кнопка для выхода из полноэкранного просмотра изображения */}
