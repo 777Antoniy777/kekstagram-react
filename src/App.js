@@ -11,8 +11,7 @@ class App extends React.Component {
     styles: null,
 
     // test
-    commentsCount: null,
-    commentsRealCount: 0,
+    shownCommentsCount: 5,
   }
 
   styleWrapper = {
@@ -20,28 +19,29 @@ class App extends React.Component {
     overflow: 'hidden',
   };
 
-  // test
-  onSetCommentsValue = (num) => {
-    this.setState({
-      commentsRealCount: num
-    })
-  }
+  onSetModalValues = (obj, amount) => {
 
-  onSetModalValues = (obj) => {
     this.setState({
-      modalValues: obj,
+      modalValues: obj
     }, this.onSetWrapperStyles);
 
-    // test
-    if (obj) {
-      this.setState({
-        commentsCount: obj.modalComments.length
-      })
-    } else {
-      this.setState({
-        commentsCount: null
-      })
-    }
+  }
+
+  onSetCommentsValue = (num) => {
+    num = num + 5;
+
+    this.setState({
+      shownCommentsCount: num
+    });
+
+  }
+
+  onResetCommentsValue = () => {
+
+    this.setState({
+      shownCommentsCount: 5
+    });
+
   }
 
   onSetWrapperStyles() {
@@ -79,13 +79,12 @@ class App extends React.Component {
             // properties
             pictures={ this.state.pictures }
             modalValues={ this.state.modalValues }
+            shownCommentsCount={ this.state.shownCommentsCount }
 
             // handlers
             onSetModalValues={ this.onSetModalValues }
-
-            // test
-            commentsCount={ this.state.commentsCount }
             onSetCommentsValue={ this.onSetCommentsValue }
+            onResetCommentsValue={ this.onResetCommentsValue }
           />
 
           <Footer />

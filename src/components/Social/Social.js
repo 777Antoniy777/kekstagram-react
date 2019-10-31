@@ -7,25 +7,52 @@ import Comment from '../Comment/Comment';
 const Social = (props) => {
   const avatarOne = 'avatars/avatar-1.svg';
   const avatarTwo = 'avatars/avatar-6.svg';
+  const { modalLikes, modalDescription, modalComments, shownCommentsCount, onSetCommentsValue } = props;
+  const modalCommentsLength = modalComments.length;
+  const commentValues = setCommentValues();
+  const visibleComments = showComments();
 
-  let commentsVisibleCount;
-  let commentsVisibleName;
+  function setCommentValues() {
 
-  if (props.modalComments.length >= 5) {
-    commentsVisibleCount = 5;
-    commentsVisibleName = 'комментариев';
+    let commentsVisibleCount = modalCommentsLength;
+    let commentsVisibleName = 'комментариев';
 
-  } else if (props.modalComments.length < 5) {
-    commentsVisibleCount = props.modalComments.length;
-    commentsVisibleName = 'комментариев';
+    if (shownCommentsCount - modalCommentsLength > 0) {
 
-    if (props.modalComments.length >= 2 && props.modalComments.length <= 4) {
-      commentsVisibleName = 'комментариев';
+      if (modalCommentsLength >= 2 && modalCommentsLength <= 4) {
+        commentsVisibleName = 'комментария';
+      }
+
+      if (modalCommentsLength === 1) {
+        commentsVisibleName = 'комментарий';
+      }
+
+    } else {
+      commentsVisibleCount = shownCommentsCount;
     }
 
-    if (props.modalComments.length === 1) {
-      commentsVisibleName = 'комментарий';
+    return {
+      commentsVisibleCount,
+      commentsVisibleName,
     }
+  }
+
+  function showComments() {
+    const visibleCommentsArr = [];
+
+    if (shownCommentsCount - modalCommentsLength > 0) {
+      for (let i = 0; i < modalCommentsLength; i++) {
+        let comment = modalComments[i];
+        visibleCommentsArr.push(comment)
+      }
+    } else {
+      for (let i = 0; i < shownCommentsCount; i++) {
+        let comment = modalComments[i];
+        visibleCommentsArr.push(comment)
+      }
+    }
+
+    return visibleCommentsArr;
   }
 
   return (
@@ -34,20 +61,20 @@ const Social = (props) => {
     <div className="Big-picture__social  Social">
       <div className="Social__header">
         <img className="Social__picture" src={ avatarOne } alt="Аватар автора фотографии" width="35" height="35"/>
-        <p className="Social__caption">{ props.modalDescription }</p>
+        <p className="Social__caption">{ modalDescription }</p>
         <p className="Social__likes">Нравится
 
           {/* Количество лайков комментария */}
-          <LikesCount modalLikes={ props.modalLikes } />
+          <LikesCount modalLikes={ modalLikes } />
         </p>
       </div>
 
       {/* Комментарии к изображению */}
-      <div className="Social__comment-count"><span className="current-comments-count">{ commentsVisibleCount }</span> из <span className="comments-count">{ props.modalComments.length }</span> { commentsVisibleName }</div>
+      <div className="Social__comment-count"><span className="current-comments-count">{ commentValues.commentsVisibleCount }</span> из <span className="comments-count">{ modalCommentsLength }</span> { commentValues.commentsVisibleName }</div>
 
       <ul className="Social__comments">
 
-        { props.modalComments.map((elem, index) =>
+        { visibleComments.map((elem, index) =>
 
           <Comment
             // properties
@@ -63,9 +90,18 @@ const Social = (props) => {
       </ul>
 
       {/* Кнопка для загрузки новой порции комментариев */}
-      <CommentsLoader
-        onSetCommentsValue={ props.onSetCommentsValue }
-      />
+      { modalCommentsLength > 5 &&
+        shownCommentsCount - modalCommentsLength < 0 &&
+
+        <CommentsLoader
+          // properties
+          shownCommentsCount={ shownCommentsCount }
+
+          // handlers
+          onSetCommentsValue={ onSetCommentsValue }
+        />
+
+      }
 
       {/* Форма для отправки комментария */}
       <div className="Social__footer">

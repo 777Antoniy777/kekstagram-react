@@ -3,7 +3,7 @@ import './BigPicture.css';
 import Social from '../Social/Social';
 
 const BigPicture = (props) => {
-  const { onSetModalValues, modalValues } = props
+  const { onSetModalValues, onResetCommentsValue, modalValues } = props
 
   document.addEventListener('keydown', buttonCloseKeydownHandler);
 
@@ -12,6 +12,7 @@ const BigPicture = (props) => {
     if (evt.keyCode === 27) {
       evt.preventDefault();
       onSetModalValues(null);
+      onResetCommentsValue();
 
       document.removeEventListener('keydown', buttonCloseKeydownHandler);
     }
@@ -21,6 +22,7 @@ const BigPicture = (props) => {
     evt.preventDefault();
 
     onSetModalValues(null);
+    onResetCommentsValue();
   }
 
   return (
@@ -41,9 +43,9 @@ const BigPicture = (props) => {
           modalLikes= { modalValues.modalLikes }
           modalDescription={ modalValues.modalDescription }
           modalComments={ modalValues.modalComments }
-
-          // test
-          commentsCount={ props.commentsCount }
+          shownCommentsCount={ props.shownCommentsCount }
+          
+          // handlers
           onSetCommentsValue={ props.onSetCommentsValue }
         />
 

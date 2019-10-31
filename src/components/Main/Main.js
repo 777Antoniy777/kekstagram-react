@@ -28,13 +28,12 @@ class Main extends React.Component {
           <BigPicture
             // properties
             modalValues={ this.props.modalValues }
+            shownCommentsCount={ this.props.shownCommentsCount }
 
             // handlers
             onSetModalValues={ this.props.onSetModalValues }
-
-            // test
-            commentsCount={ this.props.commentsCount }
             onSetCommentsValue={ this.props.onSetCommentsValue }
+            onResetCommentsValue={ this.props.onResetCommentsValue }
           />
 
         }

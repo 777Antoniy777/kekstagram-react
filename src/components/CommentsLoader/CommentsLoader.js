@@ -3,24 +3,16 @@ import './CommentsLoader.css';
 
 const CommentsLoader = (props) => {
 
-  // test
-  let val = 0;
+  function setRealCommentsValue() {
+    const { shownCommentsCount, onSetCommentsValue } = props;
 
-  function setCommentsValue(val) {
-    const { onSetCommentsValue } = props;
-    val = val + 5;
-    console.log(val)
-
-    onSetCommentsValue(val)
-
-    return val
+    onSetCommentsValue(shownCommentsCount);
   }
-  val = setCommentsValue;
 
   return (
 
     // Кнопка для загрузки новой порции комментариев
-    <button className="Social__comments-loader  Comments-loader" onClick={ setCommentsValue } type="button">Загрузить еще</button>
+    <button className="Social__comments-loader  Comments-loader" onClick={ setRealCommentsValue } type="button">Загрузить еще</button>
 
   );
 }
