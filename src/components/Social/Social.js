@@ -12,6 +12,11 @@ const Social = (props) => {
   const commentValues = setCommentValues();
   const visibleComments = showComments();
 
+  /**
+   * Set write comments name and comments value
+   *
+   * @return {object} - object of write values after the condition
+   */
   function setCommentValues() {
 
     let commentsVisibleCount = modalCommentsLength;
@@ -37,6 +42,11 @@ const Social = (props) => {
     }
   }
 
+  /**
+   * Add comments into modal
+   *
+   * @return {array} - array of added comments
+   */
   function showComments() {
     const visibleCommentsArr = [];
 

@@ -15,6 +15,9 @@ const Picture = (props) => {
     modalComments: comments
   };
 
+  /**
+   * Handler of pressing an image of the gallery
+   */
   function setModalOptions(evt) {
     evt.preventDefault();
 

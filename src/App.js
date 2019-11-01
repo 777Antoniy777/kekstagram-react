@@ -9,9 +9,6 @@ class App extends React.Component {
     pictures: null,
     modalValues: null,
     styles: null,
-
-    // test
-    shownCommentsCount: 5,
   }
 
   styleWrapper = {
@@ -19,7 +16,13 @@ class App extends React.Component {
     overflow: 'hidden',
   };
 
-  onSetModalValues = (obj, amount) => {
+  /**
+   * Set values for modal
+   *
+   * @this  {App}
+   * @param {object} obj - modal data
+   */
+  onSetModalValues = (obj) => {
 
     this.setState({
       modalValues: obj
@@ -27,23 +30,11 @@ class App extends React.Component {
 
   }
 
-  onSetCommentsValue = (num) => {
-    num = num + 5;
-
-    this.setState({
-      shownCommentsCount: num
-    });
-
-  }
-
-  onResetCommentsValue = () => {
-
-    this.setState({
-      shownCommentsCount: 5
-    });
-
-  }
-
+  /**
+   * Set styles when modal is shown
+   *
+   * @this {App}
+   */
   onSetWrapperStyles() {
 
     if (this.state.modalValues) {
@@ -58,6 +49,11 @@ class App extends React.Component {
 
   }
 
+  /**
+   * Get all data for landing
+   *
+   * @this  {App}
+   */
   componentDidMount() {
     fetch('https://js.dump.academy/kekstagram/data')
       .then(response => response.json())
@@ -79,12 +75,9 @@ class App extends React.Component {
             // properties
             pictures={ this.state.pictures }
             modalValues={ this.state.modalValues }
-            shownCommentsCount={ this.state.shownCommentsCount }
 
             // handlers
             onSetModalValues={ this.onSetModalValues }
-            onSetCommentsValue={ this.onSetCommentsValue }
-            onResetCommentsValue={ this.onResetCommentsValue }
           />
 
           <Footer />

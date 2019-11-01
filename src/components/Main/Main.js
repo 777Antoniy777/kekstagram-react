@@ -5,6 +5,38 @@ import Pictures from '../Pictures/Pictures';
 import BigPicture from '../BigPicture/BigPicture';
 
 class Main extends React.Component {
+  state = {
+    shownCommentsCount: 5,
+  }
+
+  /**
+   * Adds + 5 when button is pressed
+   *
+   * @this {App}
+   * @param {number} num - count of comments
+   */
+  onSetCommentsValue = (num) => {
+    num = num + 5;
+
+    this.setState({
+      shownCommentsCount: num
+    });
+
+  }
+
+  /**
+   * Reset when modal is closed
+   *
+   * @this {App}
+   */
+  onResetCommentsValue = () => {
+
+    this.setState({
+      shownCommentsCount: 5
+    });
+
+  }
+
   render() {
     return (
 
@@ -28,12 +60,12 @@ class Main extends React.Component {
           <BigPicture
             // properties
             modalValues={ this.props.modalValues }
-            shownCommentsCount={ this.props.shownCommentsCount }
+            shownCommentsCount={ this.state.shownCommentsCount }
 
             // handlers
             onSetModalValues={ this.props.onSetModalValues }
-            onSetCommentsValue={ this.props.onSetCommentsValue }
-            onResetCommentsValue={ this.props.onResetCommentsValue }
+            onSetCommentsValue={ this.onSetCommentsValue }
+            onResetCommentsValue={ this.onResetCommentsValue }
           />
 
         }

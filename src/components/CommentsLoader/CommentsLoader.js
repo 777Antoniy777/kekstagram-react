@@ -3,6 +3,9 @@ import './CommentsLoader.css';
 
 const CommentsLoader = (props) => {
 
+  /**
+   * Handler of pressing comments loader
+   */
   function setRealCommentsValue() {
     const { shownCommentsCount, onSetCommentsValue } = props;
 

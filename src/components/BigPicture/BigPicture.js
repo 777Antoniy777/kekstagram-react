@@ -7,6 +7,9 @@ const BigPicture = (props) => {
 
   document.addEventListener('keydown', buttonCloseKeydownHandler);
 
+  /**
+   * Handler of closing modal on the button Esc
+   */
   function buttonCloseKeydownHandler(evt) {
 
     if (evt.keyCode === 27) {
@@ -18,6 +21,9 @@ const BigPicture = (props) => {
     }
   }
 
+  /**
+   * Handler of closing modal on the close button
+   */
   function setBigPictureOptions(evt) {
     evt.preventDefault();
 
@@ -44,7 +50,7 @@ const BigPicture = (props) => {
           modalDescription={ modalValues.modalDescription }
           modalComments={ modalValues.modalComments }
           shownCommentsCount={ props.shownCommentsCount }
-          
+
           // handlers
           onSetCommentsValue={ props.onSetCommentsValue }
         />
