@@ -1,36 +1,34 @@
 import React from 'react';
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import './Picture.css';
 
 const Picture = (props) => {
-  const { url, likes, description, comments } = props;
-  const pictureNumber = parseInt(url.split('/')[1]);
-  const pictureAlt = `Картинка ${pictureNumber}`;
-  const pictureSrc = `/${url}`;
+  const { likes, description, comments, onGetPicture } = props;
+  let { url } = props;
+  const number = parseInt(url.split('/')[1]);
+  const alt = `Картинка ${number}`;
+  url = `/${url}`;
 
   const modalObj = {
-    modalUrl: pictureSrc,
-    modalAlt: pictureAlt,
-    modalLikes: likes,
-    modalDescription: description,
-    modalComments: comments
+    url,
+    alt,
+    likes,
+    description,
+    comments,
   };
 
-  /**
-   * Handler of pressing an image of the gallery
-   */
   function setModalOptions(evt) {
     evt.preventDefault();
 
-    const { onSetModalValues } = props;
-
-    onSetModalValues(modalObj);
+    onGetPicture(modalObj);
   };
 
   return (
 
     <a href="#s" className="Picture" onClick={ setModalOptions } >
 
-      <img className="Picture__img" src={ pictureSrc } width="182" height="182" alt={ pictureAlt }/>
+      <img className="Picture__img" src={ url } width="182" height="182" alt={ alt }/>
 
       <p className="Picture__info">
         <span className="Picture__comments">{ comments.length }</span>
@@ -41,4 +39,23 @@ const Picture = (props) => {
   );
 }
 
-export default Picture;
+Picture.propTypes = {
+  likes: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
+  onGetPicture: PropTypes.func,
+};
+
+export default connect(
+  state => ({
+    picture: state.picture,
+  }),
+  dispatch => ({
+    onGetPicture: (obj) => {
+      dispatch({
+        type: 'GET_DATA_PICTURE',
+        picture: obj,
+      })
+    }
+  })
+)(Picture);

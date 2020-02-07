@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import TemplateError from './components/TemplateError/TemplateError';
@@ -6,92 +7,43 @@ import TemplateSuccess from './components/TemplateSuccess/TemplateSuccess';
 
 class App extends React.Component {
   state = {
-    pictures: null,
-    modalValues: null,
-    styles: null,
-  }
-
-  styleWrapper = {
-    height: '100vh',
-    overflow: 'hidden',
-  };
-
-  /**
-   * Set values for modal
-   *
-   * @this  {App}
-   * @param {object} obj - modal data
-   */
-  onSetModalValues = (obj) => {
-
-    this.setState({
-      modalValues: obj
-    }, this.onSetWrapperStyles);
-
-  }
-
-  /**
-   * Set styles when modal is shown
-   *
-   * @this {App}
-   */
-  onSetWrapperStyles() {
-
-    if (this.state.modalValues) {
-      this.setState({
-        styles: this.styleWrapper
-      });
-    } else {
-      this.setState({
-        styles: null
-      });
-    }
-
-  }
-
-  /**
-   * Get all data for landing
-   *
-   * @this  {App}
-   */
-  componentDidMount() {
-    fetch('https://js.dump.academy/kekstagram/data')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          pictures: data
-        });
-      })
-      .catch(error => console.log(error))
+    styles: {
+      height: '100vh',
+      overflow: 'hidden',
+    },
   }
 
   render() {
+    const { picture } = this.props;
+    let style;
+
+    if (Object.keys(picture).length > 0) {
+      style = this.state.styles;
+    } else {
+      style = null;
+    }
+
     return (
+      <div style={ style } >
 
-      <React.Fragment>
-        <div style={ this.state.styles } >
+        <Main />
 
-          <Main
-            // properties
-            pictures={ this.state.pictures }
-            modalValues={ this.state.modalValues }
+        <Footer />
 
-            // handlers
-            onSetModalValues={ this.onSetModalValues }
-          />
+        {/* Сообщение с ошибкой загрузки изображения */}
+        <TemplateError />
 
-          <Footer />
+        {/* Сообщение об успешной загрузке изображения */}
+        <TemplateSuccess />
 
-          {/* Сообщение с ошибкой загрузки изображения */}
-          <TemplateError />
-
-          {/* Сообщение об успешной загрузке изображения */}
-          <TemplateSuccess />
-
-        </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
 
-export default App;
+export default connect(
+  state => ({
+    picture: state.picture,
+  })
+)(App);
+

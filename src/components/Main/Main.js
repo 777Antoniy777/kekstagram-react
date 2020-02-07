@@ -1,78 +1,35 @@
 import React from 'react';
+import { connect } from "react-redux";
 import './Main.css';
 import ImgFilters from '../ImgFilters/ImgFilters';
 import Pictures from '../Pictures/Pictures';
 import BigPicture from '../BigPicture/BigPicture';
 
-class Main extends React.Component {
-  state = {
-    shownCommentsCount: 5,
-  }
+const Main = (props) => {
+  const { picture } = props;
 
-  /**
-   * Adds + 5 when button is pressed
-   *
-   * @this {App}
-   * @param {number} num - count of comments
-   */
-  onSetCommentsValue = (num) => {
-    num = num + 5;
+  return (
+    <main className="Main">
 
-    this.setState({
-      shownCommentsCount: num
-    });
+      {/* Фильтрация изображений от других пользователей */}
+      <ImgFilters />
 
-  }
+      {/* Контейнер для изображений от других пользователей */}
+      <Pictures />
 
-  /**
-   * Reset when modal is closed
-   *
-   * @this {App}
-   */
-  onResetCommentsValue = () => {
+      {/* Полноэкранный показ изображения */}
+      { Object.keys(picture).length > 0 &&
 
-    this.setState({
-      shownCommentsCount: 5
-    });
+        <BigPicture />
 
-  }
+      }
 
-  render() {
-    return (
-
-      <main className="Main">
-
-        {/* Фильтрация изображений от других пользователей */}
-        <ImgFilters />
-
-        {/* Контейнер для изображений от других пользователей */}
-        <Pictures
-          // properties
-          pictures={ this.props.pictures }
-
-          // handlers
-          onSetModalValues={ this.props.onSetModalValues }
-        />
-
-        {/* Полноэкранный показ изображения */}
-        { this.props.modalValues &&
-
-          <BigPicture
-            // properties
-            modalValues={ this.props.modalValues }
-            shownCommentsCount={ this.state.shownCommentsCount }
-
-            // handlers
-            onSetModalValues={ this.props.onSetModalValues }
-            onSetCommentsValue={ this.onSetCommentsValue }
-            onResetCommentsValue={ this.onResetCommentsValue }
-          />
-
-        }
-
-      </main>
-    );
-  }
+    </main>
+  );
 }
 
-export default Main;
+export default connect(
+  state => ({
+    picture: state.picture,
+  }),
+)(Main);

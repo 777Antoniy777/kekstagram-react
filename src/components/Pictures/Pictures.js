@@ -1,50 +1,73 @@
 import React from 'react';
+import { connect } from "react-redux";
 import './Pictures.css';
 import ImgUpload from '../ImgUpload/ImgUpload';
 import Picture from '../Picture/Picture';
 import Preloader from '../Preloader/Preloader'
+import { asyncGetPictures } from '../../actions/getDataPictures';
 
-const Pictures = (props) => {
+class Pictures extends React.Component {
+  componentDidMount() {
+    this.props.onGetPictures();
+  }
 
-  return (
+  componentWillUnmount() {
+    this.props.onRemovePictures();
+  }
 
-    <React.Fragment>
+  render() {
+    const { pictures } = this.props;
 
-      { !props.pictures &&
-        <Preloader />
-      }
+    return (
+      <React.Fragment>
 
-      {/* Контейнер для изображений от других пользователей */}
-      <section className="Pictures  container">
-        <h2 className="Pictures__title  visually-hidden">Фотографии других пользователей</h2>
-
-        {/* Поле для загрузки нового изображения на сайт */}
-        <ImgUpload />
-
-        {/* Здесь будут изображения других пользователей */}
-        { props.pictures &&
-          props.pictures.map((elem) =>
-
-            <Picture
-              // properties
-              key={ elem.url }
-              url={ elem.url }
-              likes={ elem.likes }
-              description={ elem.description }
-              comments={ elem.comments }
-
-              // handlers
-              onSetModalValues={ props.onSetModalValues }
-            />
-
-          )
+        { pictures.length === 0 &&
+          <Preloader />
         }
 
-      </section>
+        {/* Контейнер для изображений от других пользователей */}
+        <section className="Pictures  container">
+          <h2 className="Pictures__title  visually-hidden">Фотографии других пользователей</h2>
 
-    </React.Fragment>
+          {/* Поле для загрузки нового изображения на сайт */}
+          <ImgUpload />
 
-  );
+          {/* Здесь будут изображения других пользователей */}
+          { pictures &&
+            pictures.map((elem) =>
+
+              <Picture
+                // properties
+                key={ elem.url }
+                url={ elem.url }
+                likes={ elem.likes }
+                description={ elem.description }
+                comments={ elem.comments }
+              />
+
+            )
+          }
+
+        </section>
+
+      </React.Fragment>
+    );
+  }
 }
 
-export default Pictures;
+export default connect(
+  state => ({
+    pictures: state.pictures,
+  }),
+  dispatch => ({
+    onGetPictures: () => {
+      dispatch(asyncGetPictures());
+    },
+    onRemovePictures: () => {
+      dispatch({
+        type: 'REMOVE_DATA_PICTURES',
+        pictures: [],
+      })
+    }
+  })
+)(Pictures);

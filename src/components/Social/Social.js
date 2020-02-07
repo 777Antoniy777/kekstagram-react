@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import './Social.css';
 import CommentsLoader from '../CommentsLoader/CommentsLoader';
 import LikesCount from '../LikesCount/LikesCount';
@@ -7,33 +9,39 @@ import Comment from '../Comment/Comment';
 const Social = (props) => {
   const avatarOne = 'avatars/avatar-1.svg';
   const avatarTwo = 'avatars/avatar-6.svg';
-  const { modalLikes, modalDescription, modalComments, shownCommentsCount, onSetCommentsValue } = props;
-  const modalCommentsLength = modalComments.length;
+  const { likes, description, comments, count } = props;
+  const commentsLength = comments.length;
   const commentValues = setCommentValues();
   const visibleComments = showComments();
+  const { commentsVisibleCount, commentsVisibleName } = commentValues;
 
-  /**
-   * Set write comments name and comments value
-   *
-   * @return {object} - object of write values after the condition
-   */
+  function showComments() {
+    const visibleComments = comments.filter((elem, i) => {
+      return i < count;
+    });
+
+    return visibleComments;
+  }
+
   function setCommentValues() {
+    const partCommentsName = 'комментари';
+    let commentsVisibleCount = commentsLength;
+    let commentsVisibleName;
 
-    let commentsVisibleCount = modalCommentsLength;
-    let commentsVisibleName = 'комментариев';
+    if (count - commentsLength > 0) {
+      commentsVisibleName = `${partCommentsName}ев`;
 
-    if (shownCommentsCount - modalCommentsLength > 0) {
-
-      if (modalCommentsLength >= 2 && modalCommentsLength <= 4) {
-        commentsVisibleName = 'комментария';
+      if (commentsLength >= 2 && commentsLength <= 4) {
+        commentsVisibleName = `${partCommentsName}я`;
       }
 
-      if (modalCommentsLength === 1) {
-        commentsVisibleName = 'комментарий';
+      if (commentsLength === 1) {
+        commentsVisibleName = `${partCommentsName}й`;
       }
 
     } else {
-      commentsVisibleCount = shownCommentsCount;
+      commentsVisibleCount = count;
+      commentsVisibleName = `${partCommentsName}ев`;
     }
 
     return {
@@ -42,45 +50,21 @@ const Social = (props) => {
     }
   }
 
-  /**
-   * Add comments into modal
-   *
-   * @return {array} - array of added comments
-   */
-  function showComments() {
-    const visibleCommentsArr = [];
-
-    if (shownCommentsCount - modalCommentsLength > 0) {
-      for (let i = 0; i < modalCommentsLength; i++) {
-        let comment = modalComments[i];
-        visibleCommentsArr.push(comment)
-      }
-    } else {
-      for (let i = 0; i < shownCommentsCount; i++) {
-        let comment = modalComments[i];
-        visibleCommentsArr.push(comment)
-      }
-    }
-
-    return visibleCommentsArr;
-  }
-
   return (
-
     // Информация об изображении. Подпись, комментарии, количество лайков
     <div className="Big-picture__social  Social">
       <div className="Social__header">
         <img className="Social__picture" src={ avatarOne } alt="Аватар автора фотографии" width="35" height="35"/>
-        <p className="Social__caption">{ modalDescription }</p>
+        <p className="Social__caption">{ description }</p>
         <p className="Social__likes">Нравится
 
           {/* Количество лайков комментария */}
-          <LikesCount modalLikes={ modalLikes } />
+          <LikesCount likes={ likes } />
         </p>
       </div>
 
       {/* Комментарии к изображению */}
-      <div className="Social__comment-count"><span className="current-comments-count">{ commentValues.commentsVisibleCount }</span> из <span className="comments-count">{ modalCommentsLength }</span> { commentValues.commentsVisibleName }</div>
+      <div className="Social__comment-count"><span className="current-comments-count">{ commentsVisibleCount  }</span> из <span className="comments-count">{ commentsLength }</span> { commentsVisibleName }</div>
 
       <ul className="Social__comments">
 
@@ -100,16 +84,9 @@ const Social = (props) => {
       </ul>
 
       {/* Кнопка для загрузки новой порции комментариев */}
-      { modalCommentsLength > 5 &&
-        shownCommentsCount - modalCommentsLength < 0 &&
+      { count - commentsLength < 0 &&
 
-        <CommentsLoader
-          // properties
-          shownCommentsCount={ shownCommentsCount }
-
-          // handlers
-          onSetCommentsValue={ onSetCommentsValue }
-        />
+        <CommentsLoader />
 
       }
 
@@ -120,8 +97,18 @@ const Social = (props) => {
         <button type="button" className="Social__footer-btn" name="button">Отправить</button>
       </div>
     </div>
-
   );
 }
 
-export default Social;
+Social.propTypes = {
+  likes: PropTypes.number,
+  description: PropTypes.string,
+  comments: PropTypes.array,
+  count: PropTypes.number,
+};
+
+export default connect(
+  state => ({
+    count: state.commentsCount,
+  })
+)(Social);

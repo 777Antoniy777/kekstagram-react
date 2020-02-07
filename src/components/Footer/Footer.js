@@ -10,7 +10,6 @@ function Footer() {
       <div className="Page-footer__wrapper">
 
         <Copyright />
-
         <Contacts />
 
       </div>

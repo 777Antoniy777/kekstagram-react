@@ -1,73 +1,105 @@
 import React from 'react';
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import './BigPicture.css';
 import Social from '../Social/Social';
 
-const BigPicture = (props) => {
-  const { onSetModalValues, onResetCommentsValue, modalValues } = props
-
-  document.addEventListener('keydown', buttonCloseKeydownHandler);
-
-  /**
-   * Handler of closing modal on the button Esc
-   */
-  function buttonCloseKeydownHandler(evt) {
+class BigPicture extends React.Component {
+  onPictureEsc = (evt) => {
+    const { onRemovePicture, onResetCommentsCount } = this.props;
 
     if (evt.keyCode === 27) {
       evt.preventDefault();
-      onSetModalValues(null);
-      onResetCommentsValue();
 
-      document.removeEventListener('keydown', buttonCloseKeydownHandler);
+      onRemovePicture();
+      onResetCommentsCount();
     }
   }
-
-  /**
-   * Handler of closing modal on the close button
-   */
-  function setBigPictureOptions(evt) {
-    evt.preventDefault();
-
-    onSetModalValues(null);
-    onResetCommentsValue();
+  componentDidMount(){
+    document.addEventListener("keydown", this.onPictureEsc, false);
   }
 
-  return (
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.onPictureEsc, false);
+  }
 
-    // Полноэкранный показ изображения
-    <section className="Big-picture overlay">
-      <h2 className="Big-picture__title  visually-hidden">Просмотр фотографии</h2>
-      <div className="Big-picture__preview">
+  setBigPictureOptions = (evt) => {
+    const { onRemovePicture, onResetCommentsCount } = this.props;
 
-        {/* Просмотр изображения */}
-        <div className="Big-picture__img">
-          <img src={ modalValues.modalUrl } alt={ modalValues.modalAlt } width="600" height="600"/>
+    evt.preventDefault();
+
+    onRemovePicture();
+    onResetCommentsCount();
+  }
+
+  render() {
+    const { picture } = this.props;
+    const { url, alt, likes, description, comments } = picture;
+
+    return (
+
+      // Полноэкранный показ изображения
+      <section className="Big-picture overlay">
+        <h2 className="Big-picture__title  visually-hidden">Просмотр фотографии</h2>
+        <div className="Big-picture__preview">
+
+          {/* Просмотр изображения */}
+          <div className="Big-picture__img">
+            <img src={ url } alt={ alt } width="600" height="600"/>
+          </div>
+
+          {/* Информация об изображении. Подпись, комментарии, количество лайков */}
+          <Social
+            // properties
+            likes={ likes }
+            description={ description }
+            comments={ comments }
+          />
+
+          {/* Кнопка для выхода из полноэкранного просмотра изображения */}
+          <button
+            type="reset"
+            className="Big-picture__cancel cancel"
+            id="picture-cancel"
+            onClick={ this.setBigPictureOptions }
+          >
+            Закрыть
+          </button>
         </div>
+      </section>
 
-        {/* Информация об изображении. Подпись, комментарии, количество лайков */}
-        <Social
-          // properties
-          modalLikes= { modalValues.modalLikes }
-          modalDescription={ modalValues.modalDescription }
-          modalComments={ modalValues.modalComments }
-          shownCommentsCount={ props.shownCommentsCount }
-
-          // handlers
-          onSetCommentsValue={ props.onSetCommentsValue }
-        />
-
-        {/* Кнопка для выхода из полноэкранного просмотра изображения */}
-        <button
-          type="reset"
-          className="Big-picture__cancel cancel"
-          id="picture-cancel"
-          onClick={ setBigPictureOptions }
-        >
-          Закрыть
-        </button>
-      </div>
-    </section>
-
-  );
+    );
+  }
 }
 
-export default BigPicture;
+BigPicture.propTypes = {
+  onRemovePicture: PropTypes.func,
+  onResetCommentsCount: PropTypes.func,
+  picture: PropTypes.exact({
+    url: PropTypes.string,
+    alt: PropTypes.string,
+    likes: PropTypes.number,
+    description: PropTypes.string,
+    comments: PropTypes.array,
+  }),
+};
+
+export default connect(
+  state => ({
+    picture: state.picture,
+  }),
+  dispatch => ({
+    onRemovePicture: () => {
+      dispatch({
+        type: 'REMOVE_DATA_PICTURE',
+        picture: {},
+      })
+    },
+    onResetCommentsCount: () => {
+      dispatch({
+        type: 'RESET_COUNT',
+        count: 5,
+      })
+    }
+  })
+)(BigPicture);
