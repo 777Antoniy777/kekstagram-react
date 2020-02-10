@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import './Pictures.css';
 import ImgUpload from '../ImgUpload/ImgUpload';
 import Picture from '../Picture/Picture';
@@ -54,6 +55,19 @@ class Pictures extends React.Component {
     );
   }
 }
+
+Pictures.propTypes = {
+  pictures: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      likes: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      comments: PropTypes.array.isRequired,
+    }),
+  ).isRequired,
+  onGetPictures: PropTypes.func.isRequired,
+  onRemovePictures: PropTypes.func.isRequired,
+};
 
 export default connect(
   state => ({

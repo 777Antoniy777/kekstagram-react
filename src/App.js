@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import TemplateError from './components/TemplateError/TemplateError';
@@ -40,6 +41,16 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  picture: PropTypes.shape({
+    url: PropTypes.string,
+    likes: PropTypes.number,
+    description: PropTypes.string,
+    comments: PropTypes.array,
+    alt: PropTypes.string,
+  }).isRequired,
+};
 
 export default connect(
   state => ({

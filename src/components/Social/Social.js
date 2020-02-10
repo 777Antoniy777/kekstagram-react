@@ -6,10 +6,9 @@ import CommentsLoader from '../CommentsLoader/CommentsLoader';
 import LikesCount from '../LikesCount/LikesCount';
 import Comment from '../Comment/Comment';
 
-const Social = (props) => {
-  const avatarOne = 'avatars/avatar-1.svg';
-  const avatarTwo = 'avatars/avatar-6.svg';
-  const { likes, description, comments, count } = props;
+const Social = ({likes, description, comments, count}) => {
+  const avatarOne = 'img/avatars/avatar-1.svg';
+  const avatarTwo = 'img/avatars/avatar-6.svg';
   const commentsLength = comments.length;
   const commentValues = setCommentValues();
   const visibleComments = showComments();
@@ -101,10 +100,10 @@ const Social = (props) => {
 }
 
 Social.propTypes = {
-  likes: PropTypes.number,
-  description: PropTypes.string,
-  comments: PropTypes.array,
-  count: PropTypes.number,
+  likes: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
+  count: PropTypes.number.isRequired,
 };
 
 export default connect(

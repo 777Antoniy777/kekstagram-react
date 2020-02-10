@@ -73,15 +73,15 @@ class BigPicture extends React.Component {
 }
 
 BigPicture.propTypes = {
+  picture: PropTypes.exact({
+    url: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    comments: PropTypes.array.isRequired,
+    alt: PropTypes.string.isRequired,
+  }).isRequired,
   onRemovePicture: PropTypes.func,
   onResetCommentsCount: PropTypes.func,
-  picture: PropTypes.exact({
-    url: PropTypes.string,
-    alt: PropTypes.string,
-    likes: PropTypes.number,
-    description: PropTypes.string,
-    comments: PropTypes.array,
-  }),
 };
 
 export default connect(

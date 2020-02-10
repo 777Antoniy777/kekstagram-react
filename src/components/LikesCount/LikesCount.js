@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './LikesCount.css';
 
-const LikesCount = (props) => {
-  const { likes } = props;
-
+const LikesCount = ({likes}) => {
   return (
     <span className="Likes-count">{ likes }</span>
   );
 }
 
 LikesCount.propTypes = {
-  likes: PropTypes.number,
+  likes: PropTypes.number.isRequired,
 };
 
 export default LikesCount;

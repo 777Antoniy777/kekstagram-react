@@ -3,12 +3,10 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import './Picture.css';
 
-const Picture = (props) => {
-  const { likes, description, comments, onGetPicture } = props;
-  let { url } = props;
+const Picture = ({url, likes, description, comments, onGetPicture}) => {
   const number = parseInt(url.split('/')[1]);
   const alt = `Картинка ${number}`;
-  url = `/${url}`;
+  url = `img/${url}`;
 
   const modalObj = {
     url,
@@ -40,10 +38,11 @@ const Picture = (props) => {
 }
 
 Picture.propTypes = {
+  url: PropTypes.string.isRequired,
   likes: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   comments: PropTypes.array.isRequired,
-  onGetPicture: PropTypes.func,
+  onGetPicture: PropTypes.func.isRequired,
 };
 
 export default connect(
