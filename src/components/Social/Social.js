@@ -1,48 +1,113 @@
 import React from 'react';
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import './Social.css';
 import CommentsLoader from '../CommentsLoader/CommentsLoader';
 import LikesCount from '../LikesCount/LikesCount';
+import Comment from '../Comment/Comment';
 
-function Social() {
+const Social = ({likes, description, comments, count}) => {
+  const avatarOne = 'img/avatars/avatar-1.svg';
+  const avatarTwo = 'img/avatars/avatar-6.svg';
+  const commentsLength = comments.length;
+  const commentValues = setCommentValues();
+  const visibleComments = showComments();
+  const { commentsVisibleCount, commentsVisibleName } = commentValues;
+
+  function showComments() {
+    const visibleComments = comments.filter((elem, i) => {
+      return i < count;
+    });
+
+    return visibleComments;
+  }
+
+  function setCommentValues() {
+    const partCommentsName = 'комментари';
+    let commentsVisibleCount = commentsLength;
+    let commentsVisibleName;
+
+    if (count - commentsLength > 0) {
+      commentsVisibleName = `${partCommentsName}ев`;
+
+      if (commentsLength >= 2 && commentsLength <= 4) {
+        commentsVisibleName = `${partCommentsName}я`;
+      }
+
+      if (commentsLength === 1) {
+        commentsVisibleName = `${partCommentsName}й`;
+      }
+
+    } else {
+      commentsVisibleCount = count;
+      commentsVisibleName = `${partCommentsName}ев`;
+    }
+
+    return {
+      commentsVisibleCount,
+      commentsVisibleName,
+    }
+  }
+
   return (
-
     // Информация об изображении. Подпись, комментарии, количество лайков
     <div className="Big-picture__social  Social">
       <div className="Social__header">
-        <img className="Social__picture" src="img/avatar-1.svg" alt="Аватар автора фотографии" width="35" height="35"/>
-        <p className="Social__caption">Тестим новую камеру! =)</p>
+        <img className="Social__picture" src={ avatarOne } alt="Аватар автора фотографии" width="35" height="35"/>
+        <p className="Social__caption">{ description }</p>
         <p className="Social__likes">Нравится
 
           {/* Количество лайков комментария */}
-          <LikesCount />
+          <LikesCount likes={ likes } />
         </p>
       </div>
 
-      {/* <!-- Комментарии к изображению --> */}
-      <div className="Social__comment-count"><span className="current-comments-count">5</span> из <span className="comments-count">125</span> комментариев</div>
+      {/* Комментарии к изображению */}
+      <div className="Social__comment-count"><span className="current-comments-count">{ commentsVisibleCount  }</span> из <span className="comments-count">{ commentsLength }</span> { commentsVisibleName }</div>
+
       <ul className="Social__comments">
-        <li className="Social__comment">
-          <img className="Social__picture" src="img/avatar-4.svg" alt="Аватар комментатора фотографии" width="35" height="35"/>
-          <p className="Social__text">Мега фото! Просто обалдеть. Как вам так удалось?</p>
-        </li>
-        <li className="Social__comment">
-          <img className="Social__picture" src="img/avatar-3.svg" alt="Аватар комментатора фотографии" width="35" height="35"/>
-          <p className="Social__text">Да это фоташоп!!!!!!!!</p>
-        </li>
+
+        { visibleComments.map((elem, index) =>
+
+          <Comment
+            // properties
+            key={ index }
+            url={ elem.avatar }
+            name={ elem.name }
+            message={ elem.message }
+          />
+
+          )
+        }
+
       </ul>
 
-      {/* <!-- Кнопка для загрузки новой порции комментариев --> */}
-      <CommentsLoader />
+      {/* Кнопка для загрузки новой порции комментариев */}
+      { count - commentsLength < 0 &&
 
-      {/* <!-- Форма для отправки комментария --> */}
+        <CommentsLoader />
+
+      }
+
+      {/* Форма для отправки комментария */}
       <div className="Social__footer">
-        <img className="Social__picture" src="img/avatar-6.svg" alt="Аватар комментатора фотографии" width="35" height="35"/>
+        <img className="Social__picture" src={ avatarTwo } alt="Аватар комментатора фотографии" width="35" height="35"/>
         <input type="text" className="Social__footer-text" placeholder="Ваш комментарий..."/>
         <button type="button" className="Social__footer-btn" name="button">Отправить</button>
       </div>
     </div>
-
   );
 }
 
-export default Social;
+Social.propTypes = {
+  likes: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
+  count: PropTypes.number.isRequired,
+};
+
+export default connect(
+  state => ({
+    count: state.commentsCount,
+  })
+)(Social);

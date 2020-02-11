@@ -1,27 +1,44 @@
 import React from 'react';
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import './Main.css';
 import ImgFilters from '../ImgFilters/ImgFilters';
 import Pictures from '../Pictures/Pictures';
 import BigPicture from '../BigPicture/BigPicture';
 
-const Main = (props) => {
-
+const Main = ({picture}) => {
   return (
-
     <main className="Main">
 
       {/* Фильтрация изображений от других пользователей */}
       <ImgFilters />
 
       {/* Контейнер для изображений от других пользователей */}
-      <Pictures pictures={props.pictures}/>
-      {/* <Pictures /> */}
+      <Pictures />
 
-      {/* <!-- Полноэкранный показ изображения --> */}
-      <BigPicture />
+      {/* Полноэкранный показ изображения */}
+      { Object.keys(picture).length > 0 &&
+
+        <BigPicture />
+
+      }
 
     </main>
   );
 }
 
-export default Main;
+Main.propTypes = {
+  picture: PropTypes.shape({
+    url: PropTypes.string,
+    likes: PropTypes.number,
+    description: PropTypes.string,
+    comments: PropTypes.array,
+    alt: PropTypes.string,
+  }).isRequired,
+};
+
+export default connect(
+  state => ({
+    picture: state.picture,
+  }),
+)(Main);
